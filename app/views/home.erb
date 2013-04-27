@@ -1,0 +1,17 @@
+
+<div class="row-fluid">
+  <div class="span12">
+    <style>
+      .row-fluid ul.thumbnails li.span12 + li { margin-left : 0px; }
+      .row-fluid ul.thumbnails li.span6:nth-child(2n + 3) { margin-left : 0px; }
+      .row-fluid ul.thumbnails li.span4:nth-child(3n + 4) { margin-left : 0px; }
+      .row-fluid ul.thumbnails li.span3:nth-child(4n + 5) { margin-left : 0px; }
+    </style>
+    <ul class="thumbnails"> 
+      <% @accounts.each { |account| %>
+        <%= partial :'accounts/account', :object => account  %>
+      <% } %>
+    </ul>           
+  </div>
+</div>
+

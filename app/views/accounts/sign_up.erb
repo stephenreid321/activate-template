@@ -1,0 +1,16 @@
+
+<div class="row-fluid">
+  <div class="span8 offset2">
+    <div style="text-align: center">
+
+      <%  Account.providers.each { |provider| %>             
+        <a class="btn" href="/auth/<%=provider.omniauth_name%>"><i class="icon-<%=provider.icon%>"></i> Sign up via <%=provider.display_name%></a>
+      <% } %>
+
+      <hr />
+
+      or <a href="/account/new">sign up with an email address</a>
+
+    </div>
+  </div>
+</div>

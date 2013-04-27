@@ -1,0 +1,28 @@
+
+
+<li class="span4">
+  <div class="thumbnail">
+    <div class="media">
+      <a class="pull-left" href="#">
+        <img style="border-radius: 5px; width: 100px" src="<%=account.picture.try(:url) || '/images/silhouette.png' %>" />
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading"><%=account.name%></h4>        
+        <ul class="icons">          
+          <li><i title="Email" class="icon-envelope"></i><a target="_blank" href="mailto:<%=account.email%>"><%=account.email%></a></li>
+          <li><i title="Joined on <%=account.created_at.to_date%>" class="icon-calendar"></i><%=account.created_at.to_date%></li>
+          <% Account.providers.each { |provider| %>
+            <li>
+              <% if connection = account.connections.find_by(provider: provider.display_name) %>          
+              <i title="<%=provider.display_name%>" class="icon-<%=provider.icon%>"></i><a target="_blank" href="<%=provider.profile_url.call(connection.omniauth_hash)%>"><%=provider.nickname.call(connection.omniauth_hash)%></a>
+              <% else %>
+                <i style="opacity: 0.25" class="icon-<%=provider.icon%>"></i>
+              <% end %>
+            </li>
+          <% } %>
+          </p>
+      </div>
+    </div>
+  </div>
+</li>
+

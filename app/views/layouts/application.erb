@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ActivateApp</title>
+
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <style>body { padding: 60px 0; }</style>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/javascripts/jquery-1.9.1.min.js"><\/script>')</script>	
+    <script src="/javascripts/jquery-migrate-1.1.1.js"></script>
+    <script src="/javascripts/jquery-ujs.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>  
+
+  </head>
+  <body>
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">ActivateApp</a>
+          <div class="nav-collapse">
+            <ul class="nav pull-right">            
+              <% if current_account %>              
+                <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;"><%=current_account.name%> <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/account/edit">Edit profile</a></li>
+                    <li><a href="/sign_out">Sign out</a></li>
+                  </ul>
+                </li>               
+              <% else %>                            
+                <li>
+                  <a href="/sign_up">Sign up</a>
+                </li>
+                <li>
+                  <a href="/sign_in">Sign in</a>
+                </li>                
+              <% end %>
+            </ul>                      
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>  
+
+    <div class="container-fluid">
+
+      <div class="row-fluid">
+        <div class="span12">
+
+          <div style="z-index: 1040; width: 40%; margin-left: -20%; left: 50%; position: absolute; margin-top: -40px">
+            <% {:error => 'alert-error', :warning => '', :notice => 'alert-info'}.each { |k,v| %>
+              <% if flash[k] %>
+                <div class="fade in alert <%=v%>" style="box-shadow: 1px 1px 3px #ccc;">
+                  <button data-dismiss="alert" class="close" type="button">×</button>
+                  <%= flash[k].html_safe %>
+                </div>
+              <% end %>        
+            <% } %>       
+          </div>
+          <script>
+            $(function() {
+              $(".alert").alert()
+              window.setTimeout(function() { $(".alert").alert('close'); }, 3000);
+            });
+          </script>
+
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
