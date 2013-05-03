@@ -10,6 +10,32 @@ module ActivateApp
     
     set :sessions, :expire_after => 1.year
     # set :show_exceptions, true
+    
+    register Sinatra::AssetPack
+    assets {
+      serve '/css', from: '/assets/stylesheets'
+      serve '/fonts', from: '/assets/fonts'
+      serve '/js', from: '/assets/javascripts'
+      serve '/images', from: '/assets/images'
+      css :app, [
+        '/css/bootstrap.min.css',
+        '/css/bootstrap-responsive.min.css',
+        '/css/font-awesome.min.css',
+        '/css/bootstrap-wysihtml5-0.0.2.css'
+        
+      ]
+      js :app, [
+        '/js/jquery-1.9.1.min.js',
+        '/js/jquery-migrate-1.1.1.js',
+        '/js/jquery-ujs.js',
+        '/js/bootstrap.min.js',
+        '/js/wysihtml5-0.3.0.js',
+        '/js/bootstrap-wysihtml5-0.0.2.js',
+        '/js/jquery.ba-bbq.min.js',
+        '/js/jquery.fitvids.js'
+        ]
+      prebuild true
+    } 
   
     before do
       redirect "http://#{ENV['DOMAIN']}" if ENV['DOMAIN'] and request.env['HTTP_HOST'] != ENV['DOMAIN']

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '1.9.3'
-gem 'puma'
+gem 'puma', '1.6.3'
 gem 'padrino', '0.11.1'
 gem 'rake'
 
@@ -9,7 +9,7 @@ gem 'rake'
 gem 'sinatra-assetpack', require: 'sinatra/assetpack'
 
 # Admin
-gem 'activate-admin'
+gem 'activate-admin', github: 'postscript07/activate-admin'
 
 # Data storage
 gem 'mongoid', github: 'mongoid/mongoid'
@@ -34,7 +34,7 @@ gem 'sinatra-simple-navigation', require: 'sinatra/simple-navigation'
 
 # Pagination
 gem 'kaminari', require: 'kaminari/sinatra'
-gem 'actionpack', '4.0.0.beta1'
+gem 'actionpack', '4.0.0.rc1'
 
 # Autolinking
 # gem 'rinku'
