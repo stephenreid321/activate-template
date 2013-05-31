@@ -14,7 +14,7 @@ module ActivateApp
     register Sinatra::AssetPack
     assets {
       serve '/css', from: '/assets/stylesheets'
-      serve '/fonts', from: '/assets/fonts'
+      serve '/font', from: '/assets/fonts'
       serve '/js', from: '/assets/javascripts'
       serve '/images', from: '/assets/images'
       css :app, [
@@ -22,7 +22,6 @@ module ActivateApp
         '/css/bootstrap-responsive.min.css',
         '/css/font-awesome.min.css',
         '/css/bootstrap-wysihtml5-0.0.2.css'
-        
       ]
       js :app, [
         '/js/jquery-1.9.1.min.js',

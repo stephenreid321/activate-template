@@ -10,7 +10,7 @@ gem 'rake'
 gem 'sinatra-assetpack', require: 'sinatra/assetpack'
 
 # Admin
-gem 'activate-admin', github: 'postscript07/activate-admin'
+gem 'activate-admin', github: 'wordsandwriting/activate-admin'
 
 # Data storage
 gem 'mongoid', github: 'mongoid/mongoid'
