@@ -9,8 +9,8 @@ GIT
       tzinfo (~> 0.3.22)
 
 GIT
-  remote: git://github.com/postscript07/activate-admin.git
-  revision: aa39de6bda1ef401061256c9ee623b39d3f8fef9
+  remote: git://github.com/wordsandwriting/activate-admin.git
+  revision: 365952cc599460c17cf0c23d9247775a91079446
   specs:
     activate-admin (0.0.5)
       actionpack (= 4.0.0.rc1)

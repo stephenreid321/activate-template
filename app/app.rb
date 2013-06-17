@@ -31,7 +31,8 @@ module ActivateApp
         '/js/wysihtml5-0.3.0.js',
         '/js/bootstrap-wysihtml5-0.0.2.js',
         '/js/jquery.ba-bbq.min.js',
-        '/js/jquery.fitvids.js'
+        '/js/jquery.fitvids.js',
+        '/js/jquery.popupWindow.js'
         ]
       prebuild true
     } 
@@ -82,8 +83,7 @@ module ActivateApp
     #    raise StandardError
     #  end
   
-    get '/' do
-      @accounts = Account.all
+    get :home, :map => '/' do
       erb :home
     end
      

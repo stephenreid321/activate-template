@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ActivateApp</title>
-    
+
     <%= (css :app).html_safe %>    
     <%= (js :app).html_safe %>
     <%= favicon_tag 'favicon.png' %>
-  
+    
+    <meta name="og:image" content="<%=image_path('og.png')%>">
+
     <style>body { padding: 60px 0; }</style>
-      
+
   </head>
   <body>
 
@@ -24,23 +26,28 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">ActivateApp</a>
+          <a class="brand" href="<%=url(:home)%>">ActivateApp</a>
           <div class="nav-collapse">
+            <%= render_navigation :context => :activate_admin, :items => [
+              {:key => :accounts, :name => 'Accounts', :url => url(:accounts_index), :options => {:container_class => 'nav'}},
+              {:key => :blog, :name => 'Blog', :url => url(:blog_index), :options => {:container_class => 'nav'}}              
+            ]
+          %>            
             <ul class="nav pull-right">            
               <% if current_account %>              
                 <li class="dropdown">
                   <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;"><%=current_account.name%> <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/account/edit">Edit profile</a></li>
-                    <li><a href="/sign_out">Sign out</a></li>
+                    <li><a href="<%=url(:accounts_edit)%>">Edit profile</a></li>
+                    <li><a href="<%=url(:accounts_sign_out)%>">Sign out</a></li>
                   </ul>
                 </li>               
               <% else %>                            
                 <li>
-                  <a href="/sign_up">Sign up</a>
+                  <a href="<%=url(:accounts_sign_up)%>">Sign up</a>
                 </li>
                 <li>
-                  <a href="/sign_in">Sign in</a>
+                  <a href="<%=url(:accounts_sign_in)%>">Sign in</a>
                 </li>                
               <% end %>
             </ul>                      

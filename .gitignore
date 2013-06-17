@@ -7,7 +7,6 @@ vendor/gems/*
 .sass-cache/*
 nbproject
 .env
-models/*
 
 *.gem
 *.rbc

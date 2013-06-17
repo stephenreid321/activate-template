@@ -3,30 +3,30 @@
 <div class="row-fluid">
   <div class="span6 offset3">
 
-    <% form_for @account, @account.new_record? ? '/account/new' : '/account/edit', :class => 'form-horizontal', :multipart => true do |f| %>
+    <% form_for @account, @account.new_record? ? url(:accounts_new) : url(:accounts_edit), :class => 'form-horizontal', :multipart => true do |f| %>
 
       <div class="control-group <%= 'error' if !f.error_message_on(:name).blank? %>">
-        <label class="control-label">Name</label>
+        <label class="control-label"><%= Account.human_attribute_name(:name) %></label>
         <div class="controls">      
           <%=f.text_field :name %>
           <% if !f.error_message_on(:name).blank? %>
-            <p class="help-block"><%= f.error_message_on :name, :prepend => 'Name' %></p>
+            <p class="help-block"><%= f.error_message_on :name, :prepend => Account.human_attribute_name(:name) %></p>
           <% end %>
         </div>
       </div>        
     
       <div class="control-group <%= 'error' if !f.error_message_on(:email).blank? %>">
-        <label class="control-label">Email</label>        
+        <label class="control-label"><%= Account.human_attribute_name(:email) %></label>        
         <div class="controls">      
           <%=f.text_field :email %>
           <% if !f.error_message_on(:email).blank? %>
-            <p class="help-block"><%= f.error_message_on :email, :prepend => 'Email' %></p>
+            <p class="help-block"><%= f.error_message_on :email, :prepend => Account.human_attribute_name(:email) %></p>
           <% end %>
         </div>
       </div>  
  
       <div class="control-group <%= 'error' if !f.error_message_on(:picture).blank? %>">
-        <label class="control-label">Picture</label>
+        <label class="control-label"><%= Account.human_attribute_name(:picture) %></label>
         <div class="controls">       
           <% if !@account.picture or (!@account.persisted? and !@provider) %>
             <%= f.file_field :picture %>  
@@ -43,23 +43,23 @@
             <p class="hint help-block">Connect an account below to automatically grab a picture</p>
           <% end %>               
           <% if !f.error_message_on(:picture).blank? %>
-            <p class="help-block"><%= f.error_message_on :picture, :prepend => 'Picture' %></p>
+            <p class="help-block"><%= f.error_message_on :picture, :prepend => Account.human_attribute_name(:picture) %></p>
           <% end %>            
         </div>
       </div>
 
       <div class="control-group <%= 'error' if !f.error_message_on(:time_zone).blank? %>">
-        <label class="control-label">Time zone</label>
+        <label class="control-label"><%= Account.human_attribute_name(:time_zone) %></label>
         <div class="controls">      
           <%=f.select :time_zone, :options => Account.time_zones %>
           <% if !f.error_message_on(:time_zone).blank? %>
-            <p class="help-block"><%= f.error_message_on :time_zone, :prepend => 'Time zone' %></p>
+            <p class="help-block"><%= f.error_message_on :time_zone, :prepend => Account.human_attribute_name(:time_zone) %></p>
           <% end %>
         </div>
       </div>  
 
       <div class="control-group <%= 'error' if !f.error_message_on(:password).blank? %>">
-        <label class="control-label">Password</label>
+        <label class="control-label"><%= Account.human_attribute_name(:password) %></label>
         <div class="controls">      
           <%=f.password_field :password %>
           <% if @account.persisted? %>
@@ -68,17 +68,17 @@
             <p class="hint help-block">Set a password in case you ever have problems signing in with your <i class="icon-<%=@provider.icon%>"></i> account</p>
           <% end %>
           <% if !f.error_message_on(:password).blank? %>
-            <p class="help-block"><%= f.error_message_on :password, :prepend => 'Password' %></p>
+            <p class="help-block"><%= f.error_message_on :password, :prepend => Account.human_attribute_name(:password) %></p>
           <% end %>
         </div>
       </div>  
 
       <div class="control-group <%= 'error' if !f.error_message_on(:password_confirmation).blank? %>">
-        <label class="control-label">Password again</label>
+        <label class="control-label"><%= Account.human_attribute_name(:password_confirmation) %></label>
         <div class="controls">      
           <%=f.password_field :password_confirmation %>
           <% if !f.error_message_on(:password_confirmation).blank? %>
-            <p class="help-block"><%= f.error_message_on :password_confirmation, :prepend => 'Password' %></p>
+            <p class="help-block"><%= f.error_message_on :password_confirmation, :prepend => Account.human_attribute_name(:password_confirmation) %></p>
           <% end %>
         </div>
       </div>  
@@ -96,8 +96,8 @@
               <% if connection = @account.connections.select { |connection| connection.provider == provider.display_name }[0] %>
                 <a class="span4" target="_blank" href="<%= provider.profile_url.call(connection.omniauth_hash) %>"><%=provider.nickname.call(connection.omniauth_hash)%></a>
                 <% if current_account %>
-                  <a class="use-picture btn" href="/account/<%=provider.omniauth_name%>/use_picture" data-content="<img src='<%=provider.image.call(connection.omniauth_hash)%>'>" title="Click to use this picture">Use picture</a>
-                  <a class="btn" href="/account/<%=provider.omniauth_name%>/disconnect">Disconnect</a>
+                  <a class="use-picture btn" href="<%=url(:accounts_use_picture, :provider => provider.omniauth_name)%>" data-content="<img src='<%=provider.image.call(connection.omniauth_hash)%>'>" title="Click to use this picture">Use picture</a>
+                  <a class="btn" href="<%=url(:accounts_disconnect, :provider => provider.omniauth_name)%>">Disconnect</a>
                 <% end %>                
               <% else %>
                 <span class="span4">Not connected</span>
