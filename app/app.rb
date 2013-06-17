@@ -4,8 +4,8 @@ module ActivateApp
     register Padrino::Helpers
     register Sinatra::SimpleNavigation
     helpers Kaminari::Helpers::SinatraHelpers  
-    helpers DatetimeHelpers
-    helpers ParamHelpers  
+    helpers ActivateApp::DatetimeHelpers
+    helpers ActivateApp::ParamHelpers  
     use Dragonfly::Middleware, :dragonfly
     
     set :sessions, :expire_after => 1.year

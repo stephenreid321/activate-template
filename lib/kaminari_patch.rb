@@ -5,7 +5,7 @@ if defined? Kaminari
       class ActionViewTemplateProxy
         def render(*args)
           base = ActionView::Base.new.tap do |a|
-            a.view_paths << File.expand_path("#{PADRINO_ROOT}/lib", __FILE__)
+            a.view_paths << File.expand_path("#{ActivateAdmin.root}/lib", __FILE__)
           end
           base.render(*args)
         end      
