@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: git://github.com/wordsandwriting/activate-admin.git
-  revision: 0487eaeef33f7bc2f6faa2f670b0c816250f4474
+  revision: f2a622090bda8e46ea50ddf70be30f8661461f7f
   specs:
     activate-admin (0.0.5)
       actionpack (= 4.0.0.rc2)
