@@ -13,10 +13,10 @@ module ActivateApp
     
     register Sinatra::AssetPack
     assets {
-      serve '/css', from: '/assets/stylesheets'
-      serve '/font', from: '/assets/fonts'
-      serve '/js', from: '/assets/javascripts'
-      serve '/images', from: '/assets/images'
+      serve '/css', from: "#{ActivateApp::App.root}/assets/stylesheets"
+      serve '/font', from: "#{ActivateApp::App.root}/assets/fonts"
+      serve '/js', from: "#{ActivateApp::App.root}/assets/javascripts"
+      serve '/images', from: "#{ActivateApp::App.root}/assets/images"
       css :app, [
         '/css/bootstrap.min.css',
         '/css/bootstrap-responsive.min.css',
@@ -76,7 +76,7 @@ module ActivateApp
     #  use Airbrake::Rack  
     #  Airbrake.configure do |config| config.api_key = ENV['AIRBRAKE_API_KEY'] end
     error do
-      #    Airbrake.notify(env['sinatra.error'])
+      #    Airbrake.notify(env['sinatra.error']) if Padrino.env == :production
       erb :error, :layout => :application
     end      
     #  get '/airbrake' do

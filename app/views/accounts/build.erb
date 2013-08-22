@@ -1,39 +1,39 @@
 
 
-<div class="row-fluid">
-  <div class="span6 offset3">
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
 
     <% form_for @account, @account.new_record? ? url(:accounts_new) : url(:accounts_edit), :class => 'form-horizontal', :multipart => true do |f| %>
 
-      <div class="control-group <%= 'error' if !f.error_message_on(:name).blank? %>">
-        <label class="control-label"><%= Account.human_attribute_name(:name) %></label>
-        <div class="controls">      
-          <%=f.text_field :name %>
+      <div class="form-group <%= 'has-error' if !f.error_message_on(:name).blank? %>">
+        <label class="control-label col-md-3"><%= Account.human_attribute_name(:name) %></label>
+        <div class="col-md-6">      
+          <%=f.text_field :name, :class => 'form-control' %>
           <% if !f.error_message_on(:name).blank? %>
             <p class="help-block"><%= f.error_message_on :name, :prepend => Account.human_attribute_name(:name) %></p>
           <% end %>
         </div>
       </div>        
-    
-      <div class="control-group <%= 'error' if !f.error_message_on(:email).blank? %>">
-        <label class="control-label"><%= Account.human_attribute_name(:email) %></label>        
-        <div class="controls">      
-          <%=f.text_field :email %>
+
+      <div class="form-group <%= 'has-error' if !f.error_message_on(:email).blank? %>">
+        <label class="control-label col-md-3"><%= Account.human_attribute_name(:email) %></label>        
+        <div class="col-md-6">      
+          <%=f.text_field :email, :class => 'form-control' %>
           <% if !f.error_message_on(:email).blank? %>
             <p class="help-block"><%= f.error_message_on :email, :prepend => Account.human_attribute_name(:email) %></p>
           <% end %>
         </div>
       </div>  
- 
-      <div class="control-group <%= 'error' if !f.error_message_on(:picture).blank? %>">
-        <label class="control-label"><%= Account.human_attribute_name(:picture) %></label>
-        <div class="controls">       
+
+      <div class="form-group <%= 'has-error' if !f.error_message_on(:picture).blank? %>">
+        <label class="control-label col-md-3"><%= Account.human_attribute_name(:picture) %></label>
+        <div class="col-md-6">       
           <% if !@account.picture or (!@account.persisted? and !@provider) %>
             <%= f.file_field :picture %>  
           <% else %>            
-            <img style="display: block; border-radius: 8px; max-height: 200px" src="<%= @account.persisted? ? @account.picture.url : @provider.image.call(session['omniauth.auth'])%>">
+            <img style="display: block; margin-bottom: 1em" src="<%= @account.persisted? ? @account.picture.thumb('200x200').url : @provider.image.call(session['omniauth.auth'])%>">
             <div>
-              <span class="file-option">Replace</span> <%= f.file_field :picture %>  
+              <%= f.file_field :picture, :style => 'display: inline' %>  
             </div>
             <div>
               <span class="file-option">Remove</span> <%= f.check_box :remove_picture %>
@@ -48,20 +48,20 @@
         </div>
       </div>
 
-      <div class="control-group <%= 'error' if !f.error_message_on(:time_zone).blank? %>">
-        <label class="control-label"><%= Account.human_attribute_name(:time_zone) %></label>
-        <div class="controls">      
-          <%=f.select :time_zone, :options => Account.time_zones %>
+      <div class="form-group <%= 'has-error' if !f.error_message_on(:time_zone).blank? %>">
+        <label class="control-label col-md-3"><%= Account.human_attribute_name(:time_zone) %></label>
+        <div class="col-md-6">      
+          <%=f.select :time_zone, :options => Account.time_zones, :class => 'form-control' %>
           <% if !f.error_message_on(:time_zone).blank? %>
             <p class="help-block"><%= f.error_message_on :time_zone, :prepend => Account.human_attribute_name(:time_zone) %></p>
           <% end %>
         </div>
       </div>  
 
-      <div class="control-group <%= 'error' if !f.error_message_on(:password).blank? %>">
-        <label class="control-label"><%= Account.human_attribute_name(:password) %></label>
-        <div class="controls">      
-          <%=f.password_field :password %>
+      <div class="form-group <%= 'has-error' if !f.error_message_on(:password).blank? %>">
+        <label class="control-label col-md-3"><%= Account.human_attribute_name(:password) %></label>
+        <div class="col-md-6">      
+          <%=f.password_field :password, :class => 'form-control' %>
           <% if @account.persisted? %>
             <p class="hint help-block">Leave blank to keep existing password</p>
           <% elsif @provider %>          
@@ -73,10 +73,10 @@
         </div>
       </div>  
 
-      <div class="control-group <%= 'error' if !f.error_message_on(:password_confirmation).blank? %>">
-        <label class="control-label"><%= Account.human_attribute_name(:password_confirmation) %></label>
-        <div class="controls">      
-          <%=f.password_field :password_confirmation %>
+      <div class="form-group <%= 'has-error' if !f.error_message_on(:password_confirmation).blank? %>">
+        <label class="control-label col-md-3"><%= Account.human_attribute_name(:password_confirmation) %></label>
+        <div class="col-md-6">      
+          <%=f.password_field :password_confirmation, :class => 'form-control' %>
           <% if !f.error_message_on(:password_confirmation).blank? %>
             <p class="help-block"><%= f.error_message_on :password_confirmation, :prepend => Account.human_attribute_name(:password_confirmation) %></p>
           <% end %>
@@ -90,26 +90,30 @@
       </script>
       <% Account.providers.each { |provider| %>
         <% if @account.persisted? or (session['omniauth.auth'] and session['omniauth.auth']['provider'] == provider.omniauth_name) %>
-          <div class="control-group">
-            <label class="control-label"><i class="icon-<%=provider.icon%>"></i></label>
-            <div class="controls">      
-              <% if connection = @account.connections.select { |connection| connection.provider == provider.display_name }[0] %>
-                <a class="span4" target="_blank" href="<%= provider.profile_url.call(connection.omniauth_hash) %>"><%=provider.nickname.call(connection.omniauth_hash)%></a>
-                <% if current_account %>
-                  <a class="use-picture btn" href="<%=url(:accounts_use_picture, :provider => provider.omniauth_name)%>" data-content="<img src='<%=provider.image.call(connection.omniauth_hash)%>'>" title="Click to use this picture">Use picture</a>
-                  <a class="btn" href="<%=url(:accounts_disconnect, :provider => provider.omniauth_name)%>">Disconnect</a>
-                <% end %>                
-              <% else %>
-                <span class="span4">Not connected</span>
-                <a class="btn" href="/auth/<%=provider.omniauth_name%>">Connect</a>
-              <% end %>
+          <div class="form-group">
+            <label class="control-label col-md-3"><i class="icon-<%=provider.icon%>"></i></label>
+            <div class="col-md-8">      
+              <div class="row">
+                <% if connection = @account.connections.select { |connection| connection.provider == provider.display_name }[0] %>
+                  <a class="col-md-4" target="_blank" href="<%= provider.profile_url.call(connection.omniauth_hash) %>"><%=provider.nickname.call(connection.omniauth_hash)%></a>
+                  <% if current_account %>
+                    <a class="use-picture btn btn-default" href="<%=url(:accounts_use_picture, :provider => provider.omniauth_name)%>" data-content="<img src='<%=provider.image.call(connection.omniauth_hash)%>'>" title="Click to use this picture">Use picture</a>
+                    <a class="btn btn-default" href="<%=url(:accounts_disconnect, :provider => provider.omniauth_name)%>">Disconnect</a>
+                  <% end %>                
+                <% else %>
+                  <span class="col-md-4">Not connected</span>
+                  <a class="btn btn-default" href="/auth/<%=provider.omniauth_name%>">Connect</a>
+                <% end %>
+              </div>
             </div>
           </div>
         <% end %>
       <% } %>
 
-      <div class="form-actions">
-        <button class="btn btn-primary" type="submit"><%= @account.new_record? ? 'Create account' : 'Update account' %></button>
+      <div class="form-group">
+        <div class="col-md-offset-3 col-md-8">
+          <button class="btn btn-primary" type="submit"><%= @account.new_record? ? 'Create account' : 'Update account' %></button>
+        </div>
       </div> 
 
     <% end %>

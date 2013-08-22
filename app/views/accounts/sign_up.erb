@@ -1,10 +1,10 @@
 
-<div class="row-fluid">
-  <div class="span8 offset2">
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
     <div style="text-align: center">
 
       <%  Account.providers.each { |provider| %>             
-        <a class="btn" href="/auth/<%=provider.omniauth_name%>"><i class="icon-<%=provider.icon%>"></i> Sign up via <%=provider.display_name%></a>
+        <a class="btn btn-default" href="/auth/<%=provider.omniauth_name%>"><i class="icon-<%=provider.icon%>"></i> Sign up via <%=provider.display_name%></a>
       <% } %>
 
       <hr />

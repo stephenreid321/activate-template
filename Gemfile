@@ -13,7 +13,7 @@ gem 'sinatra-assetpack', require: 'sinatra/assetpack'
 gem 'activate-admin', github: 'wordsandwriting/activate-admin'
 
 # Data storage
-gem 'mongoid', github: 'mongoid/mongoid'
+gem 'mongoid', github: 'mongoid/mongoid', ref: 'e1b32e598ec231cc7a7e191fd0432e4cd4910447'
 gem 'dragonfly'
 gem 'mongo' # MongoDataStore
 gem 'bson_ext' # MongoDataStore
@@ -35,7 +35,7 @@ gem 'sinatra-simple-navigation', require: 'sinatra/simple-navigation'
 
 # Pagination
 gem 'kaminari', require: 'kaminari/sinatra'
-gem 'actionpack', '4.0.0.rc1'
+gem 'actionpack', '4.0.0.rc2'
 
 # Autolinking
 # gem 'rinku'
