@@ -35,7 +35,7 @@
     <meta property="og:image" content="http://<%=ENV['DOMAIN']%><%=image_path('og.png')%>" />     
 
     <style>
-      @media (min-width: 768px) { body { padding: 60px 0; } }
+      body { padding: 60px 0; }
       .restore-opacity { opacity: 0.5; }
       .restore-opacity:hover { opacity: 1 !important  }
       a.edit { color: black; text-decoration: none; opacity: 0.25 }
@@ -56,7 +56,7 @@
         <a class="navbar-brand" href="<%=url(:home)%>">ActivateApp</a>
       </div>
       <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <%= render_navigation :context => :activate_admin, :items => [
+        <%= render_navigation :items => [
           {:key => :accounts, :name => 'Accounts', :url => url(:accounts_index), :options => {:container_class => 'nav navbar-nav'}},
           {:key => :blog, :name => 'Blog', :url => url(:blog_index), :options => {:container_class => 'nav navbar-nav'}}              
         ]
