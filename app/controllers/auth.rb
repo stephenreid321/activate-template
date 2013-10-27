@@ -18,7 +18,7 @@ ActivateApp::App.controller do
         if account # someone's already connected
           flash[:error] = "Someone's already connected to that account!"
         else # connect; Account never reaches here
-          flash[:notice] = "<i class=\"icon-#{@provider.icon}\"></i> Connected!"
+          flash[:notice] = "<i class=\"fa fa-#{@provider.icon}\"></i> Connected!"
           current_account.connections.build(provider: @provider.display_name, provider_uid: env['omniauth.auth']['uid'], omniauth_hash: env['omniauth.auth'])
           current_account.picture_url = @provider.image.call(env['omniauth.auth']) unless current_account.picture
           current_account.save
@@ -30,7 +30,7 @@ ActivateApp::App.controller do
           flash[:notice] = "Signed in!"
           redirect url(:home)
         else
-          flash.now[:notice] = "<i class=\"icon-#{@provider.icon}\"></i> We need a few more details to finish creating your account&hellip;"
+          flash.now[:notice] = "<i class=\"fa fa-#{@provider.icon}\"></i> We need a few more details to finish creating your account&hellip;"
           session['omniauth.auth'] = env['omniauth.auth']
           @account = Account.new
           @account.name = env['omniauth.auth']['info']['name']

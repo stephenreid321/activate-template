@@ -10,7 +10,7 @@ module ActivateApp
       s << "<span id=\"#{id if id}\" class=\"datetime #{c if c}\">"
       s << select_tag(:"#{name}[day]", :options => (1..31).to_a, :selected => v.day )
       s << select_tag(:"#{name}[month]", :options => Date::MONTHNAMES[1..-1].each_with_index.map { |x,i| [x,i+1] }, :selected => v.month)
-      s << select_tag(:"#{name}[year]", :options => (2012..2020).to_a, :selected => v.year )
+      s << select_tag(:"#{name}[year]", :options => (1900..2020).to_a, :selected => v.year )
       s << '@'
       s << select_tag(:"#{name}[hour]", :options => (0..23).to_a.map { |x| [x < 10 ? "0#{x}" : x,x] }, :selected => v.hour ) 
       s << ':'

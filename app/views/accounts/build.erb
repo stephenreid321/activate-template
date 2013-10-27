@@ -65,7 +65,7 @@
           <% if @account.persisted? %>
             <p class="hint help-block">Leave blank to keep existing password</p>
           <% elsif @provider %>          
-            <p class="hint help-block">Set a password in case you ever have problems signing in with your <i class="icon-<%=@provider.icon%>"></i> account</p>
+            <p class="hint help-block">Set a password in case you ever have problems signing in with your <i class="fa fa-<%=@provider.icon%>"></i> account</p>
           <% end %>
           <% if !f.error_message_on(:password).blank? %>
             <p class="help-block"><%= f.error_message_on :password, :prepend => Account.human_attribute_name(:password) %></p>
@@ -91,7 +91,7 @@
       <% Account.providers.each { |provider| %>
         <% if @account.persisted? or (session['omniauth.auth'] and session['omniauth.auth']['provider'] == provider.omniauth_name) %>
           <div class="form-group">
-            <label class="control-label col-md-3"><i class="icon-<%=provider.icon%>"></i></label>
+            <label class="control-label col-md-3"><i class="fa fa-<%=provider.icon%>"></i></label>
             <div class="col-md-8">      
               <div class="row">
                 <% if connection = @account.connections.select { |connection| connection.provider == provider.display_name }[0] %>

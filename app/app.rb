@@ -14,27 +14,9 @@ module ActivateApp
     register Sinatra::AssetPack
     assets {
       serve '/css', from: "#{ActivateApp::App.root}/assets/stylesheets"
-      serve '/font', from: "#{ActivateApp::App.root}/assets/fonts"
+      serve '/fonts', from: "#{ActivateApp::App.root}/assets/fonts"
       serve '/js', from: "#{ActivateApp::App.root}/assets/javascripts"
       serve '/images', from: "#{ActivateApp::App.root}/assets/images"
-      css :app, [
-        '/css/bootstrap.min.css',
-        '/css/bootstrap-responsive.min.css',
-        '/css/font-awesome.min.css',
-        '/css/bootstrap-wysihtml5-0.0.2.css'
-      ]
-      js :app, [
-        '/js/jquery-1.9.1.min.js',
-        '/js/jquery-migrate-1.1.1.js',
-        '/js/jquery-ujs.js',
-        '/js/bootstrap.min.js',
-        '/js/wysihtml5-0.3.0.js',
-        '/js/bootstrap-wysihtml5-0.0.2.js',
-        '/js/jquery.ba-bbq.min.js',
-        '/js/jquery.fitvids.js',
-        '/js/jquery.popupWindow.js'
-        ]
-      prebuild true
     } 
   
     before do

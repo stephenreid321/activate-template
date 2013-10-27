@@ -434,8 +434,10 @@
                 "h4": {},
                 "h5": {},
                 "h6": {},
+                "p": {},
                 "blockquote": {},
                 "u": 1,
+                "small": 1,
                 "img": {
                     "check_attributes": {
                         "width": "numbers",
