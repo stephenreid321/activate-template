@@ -7,6 +7,6 @@
 
 <p>Posted <%=blog_post.created_at%></p>
 
-<div><%=blog_post.body.html_safe %></div>
+<div><%=blog_post.body %></div>
 
 <%= partial :share, :locals => {:key => blog_post.slug, :url => "http://#{ENV['DOMAIN']}#{url(:blog_post, :slug => blog_post.slug)}"} %>

@@ -14,6 +14,8 @@ BacktraceShortener.filters.unshift(Proc.new do |backtrace|
   end)
 Bundler.require(:default, PADRINO_ENV)
 
+String.send(:define_method, :html_safe?){ true }
+
 Padrino.before_load do    
   SimpleNavigation::config_file_paths << "#{Padrino.root}/lib"
   require 'will_paginate/view_helpers/sinatra'
