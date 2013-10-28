@@ -10,11 +10,14 @@ require 'csv'
 require 'backtrace_shortener'
 BacktraceShortener.monkey_patch_the_exception_class!
 BacktraceShortener.filters.unshift(Proc.new do |backtrace|
-  backtrace.reject { |line| line.include?(Gem.dir) }
-end)
+    backtrace.reject { |line| line.include?(Gem.dir) }
+  end)
 Bundler.require(:default, PADRINO_ENV)
 
 Padrino.before_load do    
+  SimpleNavigation::config_file_paths << "#{Padrino.root}/lib"
+  require 'will_paginate/view_helpers/sinatra'
+  require 'will_paginate/mongoid'  
 end
 
 Padrino.after_load do

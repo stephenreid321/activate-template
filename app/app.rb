@@ -3,22 +3,15 @@ module ActivateApp
     register Padrino::Rendering
     register Padrino::Helpers
     register Sinatra::SimpleNavigation
-    helpers Kaminari::Helpers::SinatraHelpers  
+    register WillPaginate::Sinatra
     helpers ActivateApp::DatetimeHelpers
     helpers ActivateApp::ParamHelpers  
     use Dragonfly::Middleware, :dragonfly
     
     set :sessions, :expire_after => 1.year
     # set :show_exceptions, true
-    
-    register Sinatra::AssetPack
-    assets {
-      serve '/css', from: "#{ActivateApp::App.root}/assets/stylesheets"
-      serve '/fonts', from: "#{ActivateApp::App.root}/assets/fonts"
-      serve '/js', from: "#{ActivateApp::App.root}/assets/javascripts"
-      serve '/images', from: "#{ActivateApp::App.root}/assets/images"
-    } 
-  
+    set :public_folder,  Padrino.root('app', 'assets')
+      
     before do
       redirect "http://#{ENV['DOMAIN']}" if ENV['DOMAIN'] and request.env['HTTP_HOST'] != ENV['DOMAIN']
       fix_params!

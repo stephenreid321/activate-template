@@ -3,4 +3,4 @@ Padrino.configure_apps do
 end
 
 Padrino.mount('ActivateApp::App', :app_file => Padrino.root('app/app.rb')).to('/')
-Padrino.mount('ActivateAdmin::App', :app_file => ActivateAdmin.root('admin/app.rb')).to('/admin')
+Padrino.mount('ActivateAdmin::App', :app_file => ActivateAdmin.root('app/app.rb')).to('/admin')

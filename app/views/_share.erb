@@ -7,7 +7,7 @@
 
 <div class="share-buttons" style="margin: 10px 0">
   
-  <a id="facebook-share-<%=key%>" class="popup" href="http://www.facebook.com/sharer/sharer.php?u=<%=CGI::escape(url)%>"><img src="<%=image_path('share/facebook.png')%>" /></a>
+  <a id="facebook-share-<%=key%>" class="popup" href="http://www.facebook.com/sharer/sharer.php?u=<%=CGI::escape(url)%>"><img src="/images/share/facebook.png" /></a>
   <span id="facebook-share-count-<%=key%>" class="share-count"><i></i><u></u></span>
   <script>
     $(function() {
@@ -17,7 +17,7 @@
     });
   </script>
 
-  <a id="twitter-share-<%=key%>" class="popup" href="http://twitter.com/intent/tweet?<%=[:url,:via,:text,:in_reply_to,:hashtags,:related].map { |x| begin "#{x}=#{CGI::escape(eval(x.to_s))}" rescue nil; end }.compact.join('&') %>"><img src="<%=image_path('share/twitter.png')%>" /></a>
+  <a id="twitter-share-<%=key%>" class="popup" href="http://twitter.com/intent/tweet?<%=[:url,:via,:text,:in_reply_to,:hashtags,:related].map { |x| begin "#{x}=#{CGI::escape(eval(x.to_s))}" rescue nil; end }.compact.join('&') %>"><img src="/images/share/twitter.png" /></a>
   <span id="twitter-share-count-<%=key%>" class="share-count"><i></i><u></u></span>  
   <script>
     $(function() {

@@ -1,7 +1,7 @@
 ActivateApp::App.controllers :blog do
   
   get :index do
-    @blog_posts = BlogPost.order_by(:created_at.desc)
+    @blog_posts = BlogPost.order_by(:created_at.desc).per_page(1).page(params[:page])
     @title = 'Blog'
     erb :'blog/index'
   end

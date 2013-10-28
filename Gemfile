@@ -6,9 +6,6 @@ gem 'padrino', '0.11.1'
 gem 'tilt', '1.3.7'
 gem 'rake'
 
-# Asset pipeline
-gem 'sinatra-assetpack', require: 'sinatra/assetpack'
-
 # Admin
 gem 'activate-admin', github: 'wordsandwriting/activate-admin'
 
@@ -19,6 +16,10 @@ gem 'mongo' # MongoDataStore
 gem 'bson_ext' # MongoDataStore
 # gem 'fog' # S3DataStore
 
+# Pagination, navigation
+gem 'will_paginate', github: 'mislav/will_paginate'
+gem 'sinatra-simple-navigation', require: 'sinatra/simple-navigation'
+
 # Authentication
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'omniauth'
@@ -27,25 +28,20 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin'
 
-# Timezones
-gem 'tzinfo'
-
-# Navigation
-gem 'sinatra-simple-navigation', require: 'sinatra/simple-navigation'
-
-# Pagination
-gem 'kaminari', require: 'kaminari/sinatra'
-gem 'actionpack', '4.0.0.rc2'
+# Error reporting
+gem 'backtrace_shortener'
+# gem 'airbrake'
 
 # Autolinking
 # gem 'rinku'
 
-# Asynchronous tasks
-# gem 'delayed_job_mongoid'
+# Email
+# gem 'mail'
+# gem 'premailer'
 
-# Error reporting
-# gem 'airbrake'
-gem 'backtrace_shortener'
+# Asynchronous tasks
+# gem 'delayed_job_mongoid', github: 'shkbahmad/delayed_job_mongoid'
+# gem 'hirefire-resource'
 
 # Interacting with other websites
 # gem 'mechanize'
@@ -54,6 +50,8 @@ gem 'backtrace_shortener'
 # gem 'twitter'
 # gem 'koala'
 # gem 'hominid'
+# gem 'restforce'
+# gem 'heroku-api'
 
 # Caching
 # gem 'rack-cache'

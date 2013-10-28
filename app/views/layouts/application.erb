@@ -8,32 +8,32 @@
 
     <%
     [
-      '/css/bootstrap.min.css',
-      '/css/bootstrap-theme.min.css',
-      '/css/font-awesome.min.css',
-      '/css/bootstrap-wysihtml5-0.0.3.css'    
+      'bootstrap.min.css',
+      'bootstrap-theme.min.css',
+      'font-awesome.min.css',
+      'bootstrap-wysihtml5-0.0.3.css'    
     ].each { |file| %> 
-      <link rel="stylesheet" href="<%=file%>" />    
+      <link rel="stylesheet" href="/stylesheets/<%=file%>" />    
     <% } %>
 
     <% [
-      '/js/jquery-1.9.1.min.js',
-      '/js/jquery-migrate-1.1.1.js',
-      '/js/jquery-ujs.js',
-      '/js/bootstrap.min.js',
-      '/js/wysihtml5-0.3.0.js',
-      '/js/bootstrap-wysihtml5-0.0.3.js',
-      '/js/jquery.ba-bbq.min.js',
-      '/js/jquery.fitvids.js',
-      '/js/jquery.popupWindow'
+      'jquery-1.9.1.min.js',
+      'jquery-migrate-1.1.1.js',
+      'jquery-ujs.js',
+      'bootstrap.min.js',
+      'wysihtml5-0.3.0.js',
+      'bootstrap-wysihtml5-0.0.3.js',
+      'jquery.ba-bbq.min.js',
+      'jquery.fitvids.js',
+      'jquery.popupWindow.js'
     ].each { |file| %>
-      <script src="<%=file%>"></script>
+      <script src="/javascripts/<%=file%>"></script>
     <% } %>
 
     <%= favicon_tag 'favicon.png' %>
 
     <meta name="description" content="<%=Fragment.find_by(slug: 'description').try(:body)%>">
-    <meta property="og:image" content="http://<%=ENV['DOMAIN']%><%=image_path('og.png')%>" />     
+    <meta property="og:image" content="http://<%=ENV['DOMAIN']%>/images/og.png" />     
 
     <style>
       body { padding: 60px 0; }
