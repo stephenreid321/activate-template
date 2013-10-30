@@ -91,41 +91,38 @@
 
     <% end %>
       
-    <script>
-      $(function() {
-        $('.use-picture').popover({trigger: 'hover', html: true});
-      });
-    </script>
-    <% Account.providers.each { |provider| %>
-      <% if @account.persisted? or (session['omniauth.auth'] and session['omniauth.auth']['provider'] == provider.omniauth_name) %>
+      <script>
+        $(function() {
+          $('.use-picture').popover({trigger: 'hover', html: true});
+        });
+      </script>
+      <% Account.providers.each { |provider| %>
+        <% if @account.persisted? or (session['omniauth.auth'] and session['omniauth.auth']['provider'] == provider.omniauth_name) %>
         <div class="row" style="margin-bottom: 10px">
           <div class="col-md-3" style="text-align: right"><i class="fa fa-<%=provider.icon%>"></i></div>
-          <div class="col-md-8">   
-            <div class="row">
-              <% if connection = @account.connections.select { |connection| connection.provider == provider.display_name }[0] %>
+            <div class="col-md-8">      
+              <div class="row">
+                <% if connection = @account.connections.select { |connection| connection.provider == provider.display_name }[0] %>
                 <a class="col-md-4" style="margin-top: 5px" target="_blank" href="<%= provider.profile_url.call(connection.omniauth_hash) %>"><%=provider.nickname.call(connection.omniauth_hash)%></a>
-                <% if current_account %>
+                  <% if current_account %>
                   <div class="col-md-3">
                     <a class="use-picture btn btn-default" href="/account/<%=provider.omniauth_name%>/use_picture" data-content="<img src='<%=provider.image.call(connection.omniauth_hash)%>'>" title="Click to use this picture">Use picture</a>
                   </div>
                   <div class="col-md-3">
                     <a class="btn btn-default" href="/account/<%=provider.omniauth_name%>/disconnect">Disconnect</a>
                   </div>
-                <% end %>                
-              <% else %>
+                  <% end %>                
+                <% else %>
                 <span class="col-md-4" style="margin-top: 5px">Not connected</span>
                 <div class="col-md-3">
                   <a class="btn btn-default" href="/auth/<%=provider.omniauth_name%>">Connect</a>
                 </div>
-              <% end %>
-              <% if !@account.persisted? %>
-                <p style="clear:both" class="hint help-block">You can connect other accounts after signing up</p>
-              <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    <% } %>   
+        <% end %>
+      <% } %>   
     
   </div>
 </div>

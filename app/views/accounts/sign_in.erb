@@ -2,37 +2,38 @@
 <div class="row">
   <div class="col-md-offset-2 col-md-8">
     <div style="text-align: center">
-      
-      <%  Account.providers.each { |provider| %>             
-        <a class="btn btn-default" href="/auth/<%=provider.omniauth_name%>"><i class="fa fa-<%=provider.icon%>"></i> Sign in with <%=provider.display_name%></a>
-      <% } %>
+
+      <% form_tag '/auth/account/callback', :id => 'sign_in', :class => 'form-inline' do %>
+        <div class="form-group">
+          <label class="sr-only">Email</label>
+          <%= text_field_tag :email, :id => 'email', :class => 'form-control', :placeholder => 'Email', :style => 'width: 15em' %>
+        </div>        
+        <div class="form-group">
+          <label class="sr-only">Password</label>
+          <%= password_field_tag :password, :id => 'password', :class => 'form-control', :placeholder => 'Password', :style => 'width: 15em' %>
+        </div>
+        <button class="btn btn-primary" type="submit">Sign in</button>  
+        <div style="margin: 10px" >
+          <a href="javascript:;" onclick="$(this).hide();$('#sign_in').hide();$('#forgot').show();$('#forgot_email').focus();">Forgot your password?</a>
+        </div>
+      <% end %>
+
+      <% form_tag url(:accounts, :forgot_password), :id => 'forgot', :class => 'form-inline', :style => 'display: none' do %>
+        <div class="form-group">
+          <label class="sr-only">Email</label>   
+          <%= text_field_tag :email, :id => 'forgot-email', :class => 'form-control', :placeholder => 'Email', :style => 'width: 15em' %>
+        </div>
+        <button class="btn btn-primary" type="submit">Reset password</button>
+      <% end %>
+
+      <p style="margin-top: 10px">If you've connected your account to an external service:</p>
+
+      <p style="margin: 1em 0">
+        <%  Account.providers.each { |provider| %>             
+          <a class="btn btn-default" href="/auth/<%=provider.omniauth_name%>"><i class="fa fa-<%=provider.icon%>"></i> Sign in with <%=provider.display_name%></a>
+        <% } %>
+      </p> 
+
     </div>
-
-    <hr />
-
-    <form class="form-horizontal" method="post" action="/auth/account/callback">
-      <div class="form-group">
-        <label class="control-label col-md-4" for="email">Email</label>
-        <div class="col-md-4">
-          <input type="text" class="form-control" id="email" name="email">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-md-4" for="password">Password</label>
-        <div class="col-md-4">
-          <input type="password" class="form-control" id="password" name="password">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-md-offset-4 col-md-4">
-          <button class="btn btn-primary" type="submit">Sign in</button>
-        </div>
-      </div>
-
-    </form>
-
-
-
   </div>
 </div>

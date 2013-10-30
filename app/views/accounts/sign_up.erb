@@ -3,13 +3,15 @@
   <div class="col-md-offset-2 col-md-8">
     <div style="text-align: center">
 
+      <a href="<%=url(:accounts_new)%>">Sign up with an email address</a>
+
+      <p style="margin: 10px; text-align: center">
+        or   
+      </p>
+
       <%  Account.providers.each { |provider| %>             
         <a class="btn btn-default" href="/auth/<%=provider.omniauth_name%>"><i class="fa fa-<%=provider.icon%>"></i> Sign up via <%=provider.display_name%></a>
       <% } %>
-
-      <hr />
-
-      or <a href="<%=url(:accounts_new)%>">sign up with an email address</a>
 
     </div>
   </div>

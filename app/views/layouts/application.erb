@@ -18,14 +18,12 @@
 
     <% [
       'jquery-1.9.1.min.js',
-      'jquery-migrate-1.1.1.js',
-      'jquery-ujs.js',
       'bootstrap.min.js',
       'wysihtml5-0.3.0.js',
       'bootstrap-wysihtml5-0.0.3.js',
-      'jquery.ba-bbq.min.js',
-      'jquery.fitvids.js',
-      'jquery.popupWindow.js'
+      'jquery.deparam.js',
+      'jquery.popupWindow.js',
+      'jquery.fitvids.js'
     ].each { |file| %>
       <script src="/javascripts/<%=file%>"></script>
     <% } %>
@@ -36,7 +34,7 @@
     <meta property="og:image" content="http://<%=ENV['DOMAIN']%>/images/og.png" />     
 
     <style>
-      body { padding: 60px 0; }
+      body { padding: 60px 20px; }
       .restore-opacity { opacity: 0.5; }
       .restore-opacity:hover { opacity: 1 !important  }
       a.edit { color: black; text-decoration: none; opacity: 0.25 }
@@ -83,29 +81,24 @@
       </div>
     </nav>
 
-
-    <div class="container">
-
-      <div style="z-index: 1040; width: 40%; margin-left: -20%; left: 50%; position: absolute; margin-top: -40px">
-        <% {:error => 'alert-danger', :warning => 'alert-warning', :notice => 'alert-info'}.each { |k,v| %>
-          <% if flash[k] %>
-            <div class="fade in alert <%=v%> alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <%= flash[k] %>
-            </div>
-          <% end %>        
-        <% } %>       
-      </div>
-      <script>
-        $(function() {
-          $(".alert").alert()
-          window.setTimeout(function() { $(".alert").alert('close'); }, 3000);
-        });
-      </script>
-
-      <%= yield %>
-
+    <div style="z-index: 1040; width: 40%; margin-left: -20%; left: 50%; position: absolute; margin-top: -40px">
+      <% {:error => 'alert-danger', :warning => 'alert-warning', :notice => 'alert-info'}.each { |k,v| %>
+        <% if flash[k] %>
+          <div id="top-alert" class="fade in alert <%=v%> alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <%= flash[k] %>
+          </div>
+        <% end %>        
+      <% } %>       
     </div>
+    <script>
+      $(function() {
+        $(".alert").alert()
+        window.setTimeout(function() { $("#top-alert").alert('close'); }, 3000);
+      });
+    </script>
+
+    <%= yield %>
 
   </body>
 </html>
