@@ -7,14 +7,13 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 require 'pp'
 require 'csv'
+
 require 'backtrace_shortener'
 BacktraceShortener.monkey_patch_the_exception_class!
 BacktraceShortener.filters.unshift(Proc.new do |backtrace|
     backtrace.reject { |line| line.include?(Gem.dir) }
   end)
 Bundler.require(:default, PADRINO_ENV)
-
-String.send(:define_method, :html_safe?){ true }
 
 Padrino.before_load do    
 end
