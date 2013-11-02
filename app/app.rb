@@ -2,10 +2,10 @@ module ActivateApp
   class App < Padrino::Application
     register Padrino::Rendering
     register Padrino::Helpers
-    register Sinatra::SimpleNavigation
     register WillPaginate::Sinatra
-    helpers ActivateApp::DatetimeHelpers
-    helpers ActivateApp::ParamHelpers  
+    helpers Activate::DatetimeHelpers
+    helpers Activate::ParamHelpers
+    helpers Activate::NavigationHelpers
     use Dragonfly::Middleware, :dragonfly
     
     set :sessions, :expire_after => 1.year

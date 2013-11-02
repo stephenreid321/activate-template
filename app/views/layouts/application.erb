@@ -22,6 +22,7 @@
       'wysihtml5-0.3.0.js',
       'bootstrap-wysihtml5-0.0.3.js',
       'jquery.deparam.js',
+      'jquery.confirm.js',
       'jquery.popupWindow.js',
       'jquery.fitvids.js'
     ].each { |file| %>
@@ -39,6 +40,7 @@
       .restore-opacity:hover { opacity: 1 !important  }
       a.edit { color: black; text-decoration: none; opacity: 0.25 }
       a.edit:hover { opacity: 1 }
+      select[name*=day], select[name*=month], select[name*=year], select[name*=hour], select[name*=min] { display:inline; width: auto } 
     </style>
 
   </head>
@@ -55,9 +57,9 @@
         <a class="navbar-brand" href="<%=url(:home)%>">ActivateApp</a>
       </div>
       <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <%= render_navigation :items => [
-          {:key => :accounts, :name => 'Accounts', :url => url(:accounts_index), :options => {:container_class => 'nav navbar-nav'}},
-          {:key => :blog, :name => 'Blog', :url => url(:blog_index), :options => {:container_class => 'nav navbar-nav'}}              
+        <%= ul_nav 'nav navbar-nav', [
+          ['Accounts', url(:accounts_index)],
+          ['Blog', url(:blog_index)]
         ]
       %>   
         <ul class="nav navbar-nav navbar-right">

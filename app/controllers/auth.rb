@@ -28,7 +28,11 @@ ActivateApp::App.controller do
         if account # sign in
           session['account_id'] = account.id
           flash[:notice] = "Signed in!"
-          redirect url(:home)
+          if session[:return_to]
+            redirect session[:return_to]
+          else
+            redirect url(:home)
+          end
         else
           flash.now[:notice] = "<i class=\"fa fa-#{@provider.icon}\"></i> We need a few more details to finish creating your account&hellip;"
           session['omniauth.auth'] = env['omniauth.auth']

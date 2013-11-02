@@ -7,6 +7,7 @@ gem 'tilt', '1.3.7'
 gem 'rake'
 
 # Admin
+gem 'will_paginate', github: 'mislav/will_paginate'
 gem 'activate-admin', github: 'wordsandwriting/activate-admin'
 
 # Data storage
@@ -15,10 +16,6 @@ gem 'dragonfly'
 gem 'mongo' # MongoDataStore
 gem 'bson_ext' # MongoDataStore
 # gem 'fog' # S3DataStore
-
-# Pagination, navigation
-gem 'will_paginate', github: 'mislav/will_paginate'
-gem 'sinatra-simple-navigation', require: 'sinatra/simple-navigation'
 
 # Authentication
 gem 'bcrypt-ruby', require: 'bcrypt'

@@ -5,7 +5,11 @@ ActivateApp::App.helpers do
   end
   
   def protected!
-    redirect '/sign_in' unless current_account
+    if !current_account
+      flash[:notice] = 'You must sign in to access that page'
+      session[:return_to] = request.url
+      redirect url(:accounts, :sign_in)
+    end
   end
   
 end

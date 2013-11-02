@@ -98,7 +98,7 @@ ActivateApp::App.controller :accounts do
     else
       flash[:error] = "There's no account registered under that email address. Please contact stephen.reid@neweconomics.org for assistance."
     end
-    redirect '/'
+    redirect url(:home)
   end
    
 end
