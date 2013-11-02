@@ -14,8 +14,8 @@ module ActivateApp
       
     before do
       redirect "http://#{ENV['DOMAIN']}" if ENV['DOMAIN'] and request.env['HTTP_HOST'] != ENV['DOMAIN']
-      fix_params!
       Time.zone = current_account.time_zone if current_account and current_account.time_zone    
+      fix_params!
     end     
   
     use OmniAuth::Builder do
