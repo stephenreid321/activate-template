@@ -26,8 +26,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin'
 
 # Error reporting
-gem 'backtrace_shortener'
-# gem 'airbrake'
+gem 'airbrake'
 
 # Autolinking
 # gem 'rinku'

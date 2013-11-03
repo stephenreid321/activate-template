@@ -35,6 +35,9 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    airbrake (3.1.14)
+      builder
+      json
     atomic (1.1.14)
     backtrace_shortener (0.1.0)
     bcrypt-ruby (3.1.2)
@@ -53,6 +56,7 @@ GEM
       url_mount (~> 0.2.1)
     httpauth (0.2.0)
     i18n (0.6.5)
+    json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
     mail (2.5.4)
@@ -148,6 +152,7 @@ PLATFORMS
 
 DEPENDENCIES
   activate-admin!
+  airbrake
   backtrace_shortener
   bcrypt-ruby
   bson_ext
