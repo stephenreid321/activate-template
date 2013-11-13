@@ -41,7 +41,6 @@ gem 'airbrake'
 
 # Interacting with other websites
 # gem 'mechanize'
-# gem 'pismo'
 # gem 'oauth'
 # gem 'twitter'
 # gem 'koala'
