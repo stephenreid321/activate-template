@@ -4,125 +4,47 @@
   <div class="col-md-6 col-md-offset-3">
 
     <% form_for @account, @account.new_record? ? url(:accounts_new) : url(:accounts_edit), :class => 'form-horizontal', :multipart => true do |f| %>
-
-      <div class="form-group <%= 'has-error' if !f.error_message_on(:name).blank? %>">
-        <label class="control-label col-md-3"><%= Account.human_attribute_name(:name) %></label>
-        <div class="col-md-6">      
-          <%=f.text_field :name, :class => 'form-control' %>
-          <% if !f.error_message_on(:name).blank? %>
-            <p class="help-block"><%= f.error_message_on :name, :prepend => Account.human_attribute_name(:name) %></p>
-          <% end %>
-        </div>
-      </div>        
-
-      <div class="form-group <%= 'has-error' if !f.error_message_on(:email).blank? %>">
-        <label class="control-label col-md-3"><%= Account.human_attribute_name(:email) %></label>        
-        <div class="col-md-6">      
-          <%=f.text_field :email, :class => 'form-control' %>
-          <% if !f.error_message_on(:email).blank? %>
-            <p class="help-block"><%= f.error_message_on :email, :prepend => Account.human_attribute_name(:email) %></p>
-          <% end %>
-        </div>
-      </div>  
-
-      <div class="form-group <%= 'has-error' if !f.error_message_on(:picture).blank? %>">
-        <label class="control-label col-md-3"><%= Account.human_attribute_name(:picture) %></label>
-        <div class="col-md-6">       
-          <% if !@account.picture or (!@account.persisted? and !@provider) %>
-            <%= f.file_field :picture %>  
-          <% else %>            
-            <img style="display: block; margin-bottom: 1em" src="<%= @account.persisted? ? @account.picture.thumb('200x200').url : @provider.image.call(session['omniauth.auth'])%>">
-            <div>
-              <%= f.file_field :picture, :style => 'display: inline' %>  
-            </div>
-            <div>
-              <span class="file-option">Remove</span> <%= f.check_box :remove_picture %>
-            </div>
-          <% end %>    
-          <% if @account.persisted? and !@account.picture %>
-            <p class="hint help-block">Connect an account below to automatically grab a picture</p>
-          <% end %>               
-          <% if !f.error_message_on(:picture).blank? %>
-            <p class="help-block"><%= f.error_message_on :picture, :prepend => Account.human_attribute_name(:picture) %></p>
-          <% end %>            
-        </div>
-      </div>
-
-      <div class="form-group <%= 'has-error' if !f.error_message_on(:time_zone).blank? %>">
-        <label class="control-label col-md-3"><%= Account.human_attribute_name(:time_zone) %></label>
-        <div class="col-md-6">      
-          <%=f.select :time_zone, :options => Account.time_zones, :class => 'form-control' %>
-          <% if !f.error_message_on(:time_zone).blank? %>
-            <p class="help-block"><%= f.error_message_on :time_zone, :prepend => Account.human_attribute_name(:time_zone) %></p>
-          <% end %>
-        </div>
-      </div>  
-
-      <div class="form-group <%= 'has-error' if !f.error_message_on(:password).blank? %>">
-        <label class="control-label col-md-3"><%= Account.human_attribute_name(:password) %></label>
-        <div class="col-md-6">      
-          <%=f.password_field :password, :class => 'form-control' %>
-          <% if @account.persisted? %>
-            <p class="hint help-block">Leave blank to keep existing password</p>
-          <% elsif @provider %>          
-            <p class="hint help-block">Set a password in case you ever have problems signing in with your <i class="fa fa-<%=@provider.icon%>"></i> account</p>
-          <% end %>
-          <% if !f.error_message_on(:password).blank? %>
-            <p class="help-block"><%= f.error_message_on :password, :prepend => Account.human_attribute_name(:password) %></p>
-          <% end %>
-        </div>
-      </div>  
-
-      <div class="form-group <%= 'has-error' if !f.error_message_on(:password_confirmation).blank? %>">
-        <label class="control-label col-md-3"><%= Account.human_attribute_name(:password_confirmation) %></label>
-        <div class="col-md-6">      
-          <%=f.password_field :password_confirmation, :class => 'form-control' %>
-          <% if !f.error_message_on(:password_confirmation).blank? %>
-            <p class="help-block"><%= f.error_message_on :password_confirmation, :prepend => Account.human_attribute_name(:password_confirmation) %></p>
-          <% end %>
-        </div>
-      </div>  
-    
-      <div class="form-group">
-        <div class="col-md-offset-3 col-md-8">
-          <button class="btn btn-primary" type="submit"><%= @account.new_record? ? 'Create account' : 'Update account' %></button>
-        </div>
-      </div> 
-
+      <%= f.text_block :name %>
+      <%= f.text_block :email %>
+      <%= f.image_block :picture, rotate: false %>
+      <%= f.select_block :time_zone %>
+      <%= f.password_block :password %>
+      <%= f.password_block :password_confirmation %>
+      <%= f.submit_block %>  
     <% end %>
-      
-      <script>
-        $(function() {
-          $('.use-picture').popover({trigger: 'hover', html: true});
-        });
-      </script>
-      <% Account.providers.each { |provider| %>
-        <% if @account.persisted? or (session['omniauth.auth'] and session['omniauth.auth']['provider'] == provider.omniauth_name) %>
+
+    <script>
+      $(function() {
+        $('.use-picture').popover({trigger: 'hover', html: true});
+      });
+    </script>
+    <% Account.providers.each { |provider| %>
+      <% if @account.persisted? or (session['omniauth.auth'] and session['omniauth.auth']['provider'] == provider.omniauth_name) %>
         <div class="row" style="margin-bottom: 10px">
           <div class="col-md-3" style="text-align: right"><i class="fa fa-<%=provider.icon%>"></i></div>
-            <div class="col-md-8">      
-              <div class="row">
-                <% if connection = @account.connections.select { |connection| connection.provider == provider.display_name }[0] %>
+          <div class="col-md-8">      
+            <div class="row">
+              <% if connection = @account.connections.select { |connection| connection.provider == provider.display_name }[0] %>
                 <a class="col-md-4" style="margin-top: 5px" target="_blank" href="<%= provider.profile_url.call(connection.omniauth_hash) %>"><%=provider.nickname.call(connection.omniauth_hash)%></a>
-                  <% if current_account %>
+                <% if current_account %>
                   <div class="col-md-3">
-                    <a class="use-picture btn btn-default" href="/account/<%=provider.omniauth_name%>/use_picture" data-content="<img src='<%=provider.image.call(connection.omniauth_hash)%>'>" title="Click to use this picture">Use picture</a>
+                    <a class="use-picture btn btn-default" href="<%=url(:accounts_use_picture, :provider => provider.omniauth_name)%>" data-content="<img src='<%=provider.image.call(connection.omniauth_hash)%>'>" title="Click to use this picture">Use picture</a>
                   </div>
                   <div class="col-md-3">
-                    <a class="btn btn-default" href="/account/<%=provider.omniauth_name%>/disconnect">Disconnect</a>
+                    <a class="btn btn-default" href="<%=url(:accounts_disconnect, :provider => provider.omniauth_name)%>">Disconnect</a>
                   </div>
-                  <% end %>                
-                <% else %>
+                <% end %>                
+              <% else %>
                 <span class="col-md-4" style="margin-top: 5px">Not connected</span>
                 <div class="col-md-3">
                   <a class="btn btn-default" href="/auth/<%=provider.omniauth_name%>">Connect</a>
                 </div>
-                <% end %>
-              </div>
+              <% end %>
             </div>
           </div>
-        <% end %>
-      <% } %>   
-    
+        </div>
+      <% end %>
+    <% } %>   
+
   </div>
 </div>

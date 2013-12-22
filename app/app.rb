@@ -6,11 +6,11 @@ module ActivateApp
     helpers Activate::DatetimeHelpers
     helpers Activate::ParamHelpers
     helpers Activate::NavigationHelpers
-    use Dragonfly::Middleware, :dragonfly
     
     set :sessions, :expire_after => 1.year
     # set :show_exceptions, true
     set :public_folder,  Padrino.root('app', 'assets')
+    set :default_builder, 'ActivateFormBuilder'
       
     before do
       redirect "http://#{ENV['DOMAIN']}" if ENV['DOMAIN'] and request.env['HTTP_HOST'] != ENV['DOMAIN']
@@ -26,7 +26,11 @@ module ActivateApp
     #    :password             => ENV['GMAIL_PASSWORD'],
     #    :authentication       => :plain,
     #    :enable_starttls_auto => true  
-    #  }      
+    #  }    
+    
+    if defined? Dragonfly
+      use Dragonfly::Middleware, :dragonfly
+    end    
   
     if defined? OmniAuth
       use OmniAuth::Builder do

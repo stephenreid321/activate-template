@@ -6,4 +6,5 @@
 
 require File.expand_path("../config/boot.rb", __FILE__)
 
+# use HireFire::Middleware
 run Padrino.application
