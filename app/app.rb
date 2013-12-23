@@ -29,7 +29,7 @@ module ActivateApp
     #  }    
     
     if defined? Dragonfly
-      use Dragonfly::Middleware, :dragonfly
+      use Dragonfly::Middleware
     end    
   
     if defined? OmniAuth

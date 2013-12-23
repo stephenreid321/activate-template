@@ -1,9 +1,18 @@
 class Account
   include Mongoid::Document
   include Mongoid::Timestamps
-      
-  # Picture
-  field :picture_uid
+  extend Dragonfly::Model
+            
+  field :name, :type => String
+  field :title, :type => String
+  field :slug, :type => String
+  field :email, :type => String
+  field :role, :type => String, :default => 'user'
+  field :time_zone, :type => String
+  field :crypted_password, :type => String
+  field :picture_uid, :type => String
+  
+  # Dragonfly
   dragonfly_accessor :picture  
   attr_accessor :rotate_picture_by
   before_validation :rotate_picture
@@ -11,7 +20,7 @@ class Account
     if self.picture and self.rotate_picture_by
       picture.process!(:rotate, self.rotate_picture_by)
     end  
-  end
+  end  
   
   # Connections  
   has_many :connections, :dependent => :destroy
@@ -26,14 +35,7 @@ class Account
   end  
   def self.provider_object(omniauth_name)    
     providers.find { |provider| provider.omniauth_name == omniauth_name }
-  end  
-    
-  # Fields
-  field :name, :type => String
-  field :email, :type => String
-  field :role, :type => String, :default => 'user'
-  field :time_zone, :type => String
-  field :crypted_password, :type => String
+  end    
           
   attr_accessor :password, :password_confirmation 
 
@@ -46,14 +48,7 @@ class Account
   validates_presence_of     :password_confirmation,      :if => :password_required
   validates_length_of       :password, :within => 4..40, :if => :password_required
   validates_confirmation_of :password,                   :if => :password_required  
-  
-  HUMANIZED_ATTRIBUTES = {
-    :password_confirmation => "Password again"
-  }  
-  def self.human_attribute_name(attr, options={})  
-    HUMANIZED_ATTRIBUTES[attr.to_sym] || super  
-  end   
-      
+        
   def self.fields_for_index
     [:name, :email, :role, :time_zone]
   end
@@ -76,6 +71,12 @@ class Account
       :password => 'Leave blank to keep existing password'      
     }
   end   
+    
+  def self.human_attribute_name(attr, options={})  
+    {
+      :password_confirmation => "Password again"
+    }[attr.to_sym] || super  
+  end    
            
   def self.time_zones
     ['']+ActiveSupport::TimeZone::MAPPING.keys.sort
