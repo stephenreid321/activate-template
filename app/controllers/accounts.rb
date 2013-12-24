@@ -36,7 +36,7 @@ ActivateApp::App.controller :accounts do
   end
     
   get :use_picture, :with => :provider do
-    protected!
+    sign_in_required!
     @provider = Account.provider_object(params[:provider])
     @account = current_account
     @account.picture_url = @provider.image.call(@account.connections.find_by(provider: @provider.display_name).omniauth_hash)
@@ -50,7 +50,7 @@ ActivateApp::App.controller :accounts do
   end   
   
   get :disconnect, :with => :provider do
-    protected!
+    sign_in_required!
     @provider = Account.provider_object(params[:provider])    
     @account = current_account
     if @account.connections.find_by(provider: @provider.display_name).destroy
@@ -63,13 +63,13 @@ ActivateApp::App.controller :accounts do
   end      
   
   get :edit do
-    protected!
+    sign_in_required!
     @account = current_account
     erb :'accounts/build'
   end
   
   post :edit do
-    protected!
+    sign_in_required!
     @account = current_account
     if @account.update_attributes(params[:account])      
       flash[:notice] = "<strong>Awesome!</strong> Your account was updated successfully."
@@ -86,7 +86,7 @@ ActivateApp::App.controller :accounts do
   end
   
   post :forgot_password do
-    if @account = Account.find_by(email: params[:email])
+    if @account = Account.find_by(email: /^#{params[:email]}$/)
       @account.password = Account.generate_password(8)
       @account.password_confirmation = @account.password
       if @account.save

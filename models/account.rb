@@ -4,8 +4,6 @@ class Account
   extend Dragonfly::Model
             
   field :name, :type => String
-  field :title, :type => String
-  field :slug, :type => String
   field :email, :type => String
   field :role, :type => String, :default => 'user'
   field :time_zone, :type => String
@@ -99,7 +97,7 @@ class Account
   end
   
   def self.authenticate(email, password)
-    account = find_by(email: email) if email.present?
+    account = find_by(email: /^#{email}$/) if email.present?
     account && account.has_password?(password) ? account : nil
   end
   
