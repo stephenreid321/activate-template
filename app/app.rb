@@ -20,7 +20,7 @@ module ActivateApp
       OmniAuth::FailureEndpoint.new(env).redirect_to_failure
     }
     
-    set :sessions, :expire_after => 1.year, :secret => ENV['SESSION_SECRET']
+    set :sessions, :expire_after => 1.year    
     set :public_folder,  Padrino.root('app', 'assets')
     set :default_builder, 'ActivateFormBuilder'    
        

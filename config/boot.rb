@@ -12,5 +12,3 @@ Padrino.load!
 Mongoid.load!("#{PADRINO_ROOT}/config/mongoid.yml")
 Mongoid.raise_not_found_error = false
 
-Padrino.mount('ActivateApp::App', :app_file => Padrino.root('app/app.rb')).to('/')
-Padrino.mount('ActivateAdmin::App', :app_file => ActivateAdmin.root('app/app.rb')).to('/admin')
