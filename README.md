@@ -3,6 +3,7 @@ activate-template
 
 Activate Digital Padrino/Mongoid template project.
 
+## Other useful gems
 ```
 # Autolinking
 gem 'rinku'
@@ -35,12 +36,6 @@ gem 'dalli'
 use Rack::Cache, :metastore => Dalli::Client.new, :entitystore  => 'file:tmp/cache/rack/body', :allow_reload => false
 ```
 
-## Padrino::Mailer with Gmail
-```ruby
-register Padrino::Mailer
-set :delivery_method, :smtp => {:user_name => ENV['GMAIL_USERNAME'], :password => ENV['GMAIL_PASSWORD'], :address => "smtp.gmail.com", :port => 587, :authentication => :plain, :enable_starttls_auto => true}
-```
-
 ## Delayed::Job + Airbrake
 ```ruby
 module Delayed
@@ -65,4 +60,10 @@ HireFire::Resource.configure do |config|
     HireFire::Macro::Delayed::Job.queue(:mapper => :mongoid)
   end
 end
+```
+
+## Padrino::Mailer with Gmail
+```ruby
+register Padrino::Mailer
+set :delivery_method, :smtp => {:user_name => ENV['GMAIL_USERNAME'], :password => ENV['GMAIL_PASSWORD'], :address => "smtp.gmail.com", :port => 587, :authentication => :plain, :enable_starttls_auto => true}
 ```
