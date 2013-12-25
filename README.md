@@ -6,29 +6,29 @@ Activate Digital Padrino/Mongoid template project.
 ## Other useful gems
 ```
 # Autolinking
-gem 'rinku'
+# gem 'rinku'
 
 # Email
-gem 'mail'
-gem 'premailer'
+# gem 'mail'
+# gem 'premailer'
 
 # Asynchronous tasks
-gem 'delayed_job_mongoid', github: 'shkbahmad/delayed_job_mongoid'
-gem 'hirefire-resource'
+# gem 'delayed_job_mongoid', github: 'shkbahmad/delayed_job_mongoid'
+# gem 'hirefire-resource'
 
 # Interacting with other websites
-gem 'mechanize'
-gem 'oauth'
-gem 'twitter'
-gem 'koala'
-gem 'hominid'
-gem 'restforce'
-gem 'heroku-api'
+# gem 'mechanize'
+# gem 'oauth'
+# gem 'twitter'
+# gem 'koala'
+# gem 'hominid'
+# gem 'restforce'
+# gem 'heroku-api'
 
 # Caching
-gem 'rack-cache'
-gem 'memcachier'
-gem 'dalli'
+# gem 'rack-cache'
+# gem 'memcachier'
+# gem 'dalli'
 ```
 
 ## Rack::Cache
