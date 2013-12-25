@@ -21,7 +21,7 @@ module ActivateApp
     }
     
     set :sessions, :expire_after => 1.year    
-    set :public_folder,  Padrino.root('app', 'assets')
+    set :public_folder, Padrino.root('app', 'assets')
     set :default_builder, 'ActivateFormBuilder'    
        
     before do

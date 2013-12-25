@@ -3,6 +3,33 @@ activate-template
 
 Activate Digital Padrino/Mongoid template project.
 
+```
+# Autolinking
+gem 'rinku'
+
+# Email
+gem 'mail'
+gem 'premailer'
+
+# Asynchronous tasks
+gem 'delayed_job_mongoid', github: 'shkbahmad/delayed_job_mongoid'
+gem 'hirefire-resource'
+
+# Interacting with other websites
+gem 'mechanize'
+gem 'oauth'
+gem 'twitter'
+gem 'koala'
+gem 'hominid'
+gem 'restforce'
+gem 'heroku-api'
+
+# Caching
+gem 'rack-cache'
+gem 'memcachier'
+gem 'dalli'
+```
+
 ## Rack::Cache
 ```ruby
 use Rack::Cache, :metastore => Dalli::Client.new, :entitystore  => 'file:tmp/cache/rack/body', :allow_reload => false
@@ -31,6 +58,8 @@ end
 
 ## Delayed::Job + Hirefire
 ```ruby
+use HireFire::Middleware # config.ru
+
 HireFire::Resource.configure do |config|
   config.dyno(:worker) do
     HireFire::Macro::Delayed::Job.queue(:mapper => :mongoid)
