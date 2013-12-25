@@ -1,4 +1,3 @@
-# tasks/jobs.rake
 
 task :environment do
   require File.expand_path(File.join(File.dirname(__FILE__), '..', 'config', 'boot.rb'))
