@@ -18,7 +18,7 @@ class BlogPost
     {
       :title => :text,
       :slug => :slug,
-      :body => :text_area
+      :body => :wysiwyg
     }
   end
        
