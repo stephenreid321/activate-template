@@ -3,7 +3,7 @@ activate-template
 
 Activate Digital Padrino/Mongoid template project.
 
-## Rack::Cache:
+## Rack::Cache
 ```ruby
 use Rack::Cache, :metastore => Dalli::Client.new, :entitystore  => 'file:tmp/cache/rack/body', :allow_reload => false
 ```
