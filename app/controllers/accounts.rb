@@ -1,8 +1,38 @@
 ActivateApp::App.controller :accounts do
   
+  get :sign_in do
+    erb :'accounts/sign_in'
+  end    
+  
   get :sign_up do
     erb :'accounts/sign_up'
   end    
+  
+  get :sign_out do
+    session.clear
+    redirect url(:home)
+  end
+  
+  post :forgot_password do
+    if @account = Account.find_by(email: /^#{params[:email]}$/)
+      @account.password = Account.generate_password(8)
+      @account.password_confirmation = @account.password
+      if @account.save
+        email(:to => @account.email, :subject => 'New password', :body => "Hi #{@account.name.split(' ').first},\n\nSomeone (hopefully you) requested a new password on #{ENV['DOMAIN']}.\n\nYour new password is: #{@account.password}\n\nYou can sign in at http://#{ENV['DOMAIN']}/sign_in.")
+        flash[:notice] = "A new password was sent to #{@account.email}"
+      else
+        flash[:error] = "There was a problem resetting your password."
+      end
+    else
+      flash[:error] = "There's no account registered under that email address. Please contact stephen.reid@neweconomics.org for assistance."
+    end
+    redirect url(:home)
+  end  
+  
+  get :index do
+    @accounts = Account.all
+    erb :'accounts/index'
+  end  
       
   get :new do
     @account = Account.new    
@@ -25,16 +55,25 @@ ActivateApp::App.controller :accounts do
       erb :'accounts/build'
     end
   end
-  
-  get :sign_in do
-    erb :'accounts/sign_in'
-  end  
-  
-  get :index do
-    @accounts = Account.all
-    erb :'accounts/index'
+      
+  get :edit do
+    sign_in_required!
+    @account = current_account
+    erb :'accounts/build'
   end
-    
+  
+  post :edit do
+    sign_in_required!
+    @account = current_account
+    if @account.update_attributes(params[:account])      
+      flash[:notice] = "<strong>Awesome!</strong> Your account was updated successfully."
+      redirect url(:accounts_edit)
+    else
+      flash.now[:error] = "<strong>Oops.</strong> Some errors prevented the account from being saved."
+      erb :'accounts/build'
+    end
+  end
+  
   get :use_picture, :with => :provider do
     sign_in_required!
     @provider = Account.provider_object(params[:provider])
@@ -60,45 +99,6 @@ ActivateApp::App.controller :accounts do
       flash.now[:error] = "<strong>Oops.</strong> The disconnect wasn't successful."
       erb :'accounts/build'
     end
-  end      
-  
-  get :edit do
-    sign_in_required!
-    @account = current_account
-    erb :'accounts/build'
-  end
-  
-  post :edit do
-    sign_in_required!
-    @account = current_account
-    if @account.update_attributes(params[:account])      
-      flash[:notice] = "<strong>Awesome!</strong> Your account was updated successfully."
-      redirect url(:accounts_edit)
-    else
-      flash.now[:error] = "<strong>Oops.</strong> Some errors prevented the account from being saved."
-      erb :'accounts/build'
-    end
-  end
-  
-  get :sign_out do
-    session.clear
-    redirect url(:home)
-  end
-  
-  post :forgot_password do
-    if @account = Account.find_by(email: /^#{params[:email]}$/)
-      @account.password = Account.generate_password(8)
-      @account.password_confirmation = @account.password
-      if @account.save
-        email(:to => @account.email, :subject => 'New password', :body => "Hi #{@account.name.split(' ').first},\n\nSomeone (hopefully you) requested a new password on #{ENV['DOMAIN']}.\n\nYour new password is: #{@account.password}\n\nYou can sign in at http://#{ENV['DOMAIN']}/sign_in.")
-        flash[:notice] = "A new password was sent to #{@account.email}"
-      else
-        flash[:error] = "There was a problem resetting your password."
-      end
-    else
-      flash[:error] = "There's no account registered under that email address. Please contact stephen.reid@neweconomics.org for assistance."
-    end
-    redirect url(:home)
-  end
+  end   
    
 end
