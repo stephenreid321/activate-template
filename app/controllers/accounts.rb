@@ -1,13 +1,13 @@
 ActivateApp::App.controller :accounts do
   
-  get :sign_in do
-    erb :'accounts/sign_in'
-  end    
-  
   get :sign_up do
     erb :'accounts/sign_up'
   end    
   
+  get :sign_in do
+    erb :'accounts/sign_in'
+  end    
+    
   get :sign_out do
     session.clear
     redirect url(:home)
