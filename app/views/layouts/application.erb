@@ -75,12 +75,7 @@
         </button>
         <a class="navbar-brand" href="<%=url(:home)%>">ActivateApp</a>
       </div>
-      <div class="collapse navbar-collapse navbar-top-collapse">
-        <%= ul_nav 'nav navbar-nav', [
-          ['Accounts', url(:accounts_index)],
-          ['Blog', url(:blog_index)]
-          ]
-      %>   
+      <div class="collapse navbar-collapse navbar-top-collapse"> 
         <div class="navbar-right">
           <ul class="nav navbar-nav">
             <% if current_account %>              

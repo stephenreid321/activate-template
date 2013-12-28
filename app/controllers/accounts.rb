@@ -28,12 +28,7 @@ ActivateApp::App.controller :accounts do
     end
     redirect url(:home)
   end  
-  
-  get :index do
-    @accounts = Account.all
-    erb :'accounts/index'
-  end  
-      
+        
   get :new do
     @account = Account.new    
     erb :'accounts/build'
