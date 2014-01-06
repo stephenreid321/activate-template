@@ -16,7 +16,7 @@ class Account
   before_validation :rotate_picture
   def rotate_picture
     if self.picture and self.rotate_picture_by
-      picture.process!(:rotate, self.rotate_picture_by)
+      picture.rotate(self.rotate_picture_by)
     end  
   end  
   
