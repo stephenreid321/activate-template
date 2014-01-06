@@ -1,6 +1,6 @@
 ---
 :orm: mongoid
-:test: none
+:test: minitest
 :mock: none
 :script: jquery
 :renderer: erb
