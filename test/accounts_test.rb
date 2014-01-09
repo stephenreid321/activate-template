@@ -3,11 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + '/test_config.rb')
 class TestAccounts < ActiveSupport::TestCase
   include Capybara::DSL
     
-  def setup       
-  end
-  
-  def teardown
-    Account.destroy_all
+  setup do
+    Account.destroy_all    
   end
   
   test 'signing up' do
