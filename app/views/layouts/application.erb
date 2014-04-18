@@ -9,7 +9,6 @@
     <%
     [
       'bootstrap.min.css',
-      'bootstrap-theme.min.css',
       'font-awesome.min.css',
       'bootstrap-wysihtml5-0.0.3.css'    
       ].each { |file| %> 
@@ -19,12 +18,8 @@
     <% [
       'jquery-1.11.0.min.js',
       'bootstrap.min.js',
-      'wysihtml5-0.3.0.js',
-      'bootstrap-wysihtml5-0.0.3.js',
-      'jquery.deparam.js',
       'jquery.confirm.js',
       'jquery.popupWindow.js',
-      'jquery.fitvids.js'
       ].each { |file| %>
       <script src="/javascripts/<%=file%>"></script>
     <% } %>
