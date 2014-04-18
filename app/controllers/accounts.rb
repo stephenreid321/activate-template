@@ -62,7 +62,7 @@ ActivateApp::App.controller :accounts do
     @account = current_account
     if @account.update_attributes(params[:account])      
       flash[:notice] = "<strong>Awesome!</strong> Your account was updated successfully."
-      redirect url(:accounts_edit)
+      redirect url(:accounts, :edit)
     else
       flash.now[:error] = "<strong>Oops.</strong> Some errors prevented the account from being saved."
       erb :'accounts/build'
@@ -76,7 +76,7 @@ ActivateApp::App.controller :accounts do
     @account.picture_url = @provider.image.call(@account.connections.find_by(provider: @provider.display_name).omniauth_hash)
     if @account.save
       flash[:notice] = "<i class=\"fa fa-#{@provider.icon}\"></i> Grabbed your picture!"
-      redirect url(:accounts_edit)
+      redirect url(:accounts, :edit)
     else
       flash.now[:error] = "<strong>Hmm.</strong> There was a problem grabbing your picture."
       erb :'accounts/build'
@@ -89,7 +89,7 @@ ActivateApp::App.controller :accounts do
     @account = current_account
     if @account.connections.find_by(provider: @provider.display_name).destroy
       flash[:notice] = "<i class=\"fa fa-#{@provider.icon}\"></i> Disconnected!"
-      redirect url(:accounts_edit)
+      redirect url(:accounts, :edit)
     else
       flash.now[:error] = "<strong>Oops.</strong> The disconnect wasn't successful."
       erb :'accounts/build'

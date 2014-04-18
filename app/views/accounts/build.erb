@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
 
-    <% form_for @account, @account.new_record? ? url(:accounts_new) : url(:accounts_edit), :class => 'form-horizontal', :multipart => true do |f| %>
+    <% form_for @account, @account.new_record? ? url(:accounts, :new) : url(:accounts, :edit), :class => 'form-horizontal', :multipart => true do |f| %>
       <%= f.text_block :name %>
       <%= f.text_block :email %>
       <%= f.image_block :picture, rotate: false %>
@@ -28,10 +28,10 @@
                 <a class="col-md-4" style="margin-top: 5px" target="_blank" href="<%= provider.profile_url.call(connection.omniauth_hash) %>"><%=provider.nickname.call(connection.omniauth_hash)%></a>
                 <% if current_account %>
                   <div class="col-md-3">
-                    <a class="use-picture btn btn-default" href="<%=url(:accounts_use_picture, :provider => provider.omniauth_name)%>" data-content="<img src='<%=provider.image.call(connection.omniauth_hash)%>'>" title="Click to use this picture">Use picture</a>
+                    <a class="use-picture btn btn-default" href="<%=url(:accounts, :use_picture, :provider => provider.omniauth_name)%>" data-content="<img src='<%=provider.image.call(connection.omniauth_hash)%>'>" title="Click to use this picture">Use picture</a>
                   </div>
                   <div class="col-md-3">
-                    <a class="btn btn-default" href="<%=url(:accounts_disconnect, :provider => provider.omniauth_name)%>">Disconnect</a>
+                    <a class="btn btn-default" href="<%=url(:accounts, :disconnect, :provider => provider.omniauth_name)%>">Disconnect</a>
                   </div>
                 <% end %>                
               <% else %>

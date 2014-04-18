@@ -1,9 +1,8 @@
 source 'https://rubygems.org'
 
 ruby '2.0.0'
-gem 'puma', '1.6.3'
-gem 'padrino', '0.11.1'
-gem 'tilt', '1.3.7'
+gem 'puma'
+gem 'padrino', '0.12.0'
 gem 'rake'
 
 # Admin
@@ -15,7 +14,7 @@ gem 'mongoid', github: 'mongoid/mongoid', ref: 'e1b32e598ec231cc7a7e191fd0432e4c
 gem 'dragonfly'
 
 # Authentication
-gem 'bcrypt-ruby', require: 'bcrypt'
+gem 'bcrypt'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
@@ -38,4 +37,5 @@ group :test do
   gem 'factory_girl'
   gem 'turn'
   gem 'capybara'
+  gem 'launchy'
 end

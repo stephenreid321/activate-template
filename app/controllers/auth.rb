@@ -23,7 +23,7 @@ ActivateApp::App.controller do
           current_account.picture_url = @provider.image.call(env['omniauth.auth']) unless current_account.picture
           current_account.save
         end
-        redirect url(:accounts_edit)
+        redirect url(:accounts, :edit)
       else # not signed in
         if account # sign in
           session['account_id'] = account.id
