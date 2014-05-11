@@ -1,0 +1,4 @@
+
+<a class="popup facebook share-big" href="http://www.facebook.com/sharer/sharer.php?u=<%=CGI::escape(url)%>"><i class="fa fa-facebook"></i> Share on Facebook</a>
+<a class="twitter share-big"  href="http://twitter.com/intent/tweet?<%=[:url,:via,:text,:in_reply_to,:hashtags,:related].map { |x| begin "#{x}=#{CGI::escape(eval(x.to_s))}" rescue nil; end }.compact.join('&') %>"><i class="fa fa-twitter"></i> Share on Twitter</a>
+

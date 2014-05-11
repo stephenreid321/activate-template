@@ -12,4 +12,10 @@ ActivateApp::App.helpers do
     end
   end  
   
+  def f(slug)
+    (if fragment = Fragment.find_by(slug: slug) and fragment.body
+      "\"#{fragment.body.to_s.gsub('"','\"')}\""
+    end).to_s
+  end  
+  
 end

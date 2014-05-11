@@ -20,15 +20,15 @@ class Account
     end  
   end  
   
-  # Connections  
-  has_many :connections, :dependent => :destroy
-  accepts_nested_attributes_for :connections
+  # Site links  
+  has_many :site_links, :dependent => :destroy
+  accepts_nested_attributes_for :site_links
   def self.providers
     [
-      Provider.new('Twitter', image: ->(hash){ hash['info']['image'].gsub(/_normal/,'') }),
-      Provider.new('Facebook', image: ->(hash){ hash['info']['image'].gsub(/square/,'large') }),
-      Provider.new('Google', omniauth_name: 'google_oauth2', icon: 'google-plus', nickname: ->(hash) { hash['info']['name'] }, profile_url: ->(hash){ "http://plus.google.com/#{hash['uid']}"}),
-      Provider.new('LinkedIn', nickname: ->(hash) { hash['info']['name'] }, profile_url: ->(hash){ hash['info']['urls']['public_profile'] })
+      # Provider.new('Twitter', image: ->(hash){ hash['info']['image'].gsub(/_normal/,'') }),
+      # Provider.new('Facebook', image: ->(hash){ hash['info']['image'].gsub(/square/,'large') }),
+      # Provider.new('Google', omniauth_name: 'google_oauth2', icon: 'google-plus', nickname: ->(hash) { hash['info']['name'] }, profile_url: ->(hash){ "http://plus.google.com/#{hash['uid']}"}),
+      # Provider.new('LinkedIn', nickname: ->(hash) { hash['info']['name'] }, profile_url: ->(hash){ hash['info']['urls']['public_profile'] })
     ]
   end  
   def self.provider_object(omniauth_name)    
@@ -60,7 +60,7 @@ class Account
       :time_zone => :select,
       :password => :password,
       :password_confirmation => :password,
-      :connections => :collection
+      :site_links => :collection
     }
   end
     

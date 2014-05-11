@@ -12,14 +12,14 @@ ActivateApp::App.controller do
       else
         env['omniauth.auth'].delete('extra')
         @provider = Account.provider_object(env['omniauth.auth']['provider'])
-        Connection.find_by(provider: @provider.display_name, provider_uid: env['omniauth.auth']['uid']).try(:account)
+        SiteLink.find_by(provider: @provider.display_name, provider_uid: env['omniauth.auth']['uid']).try(:account)
       end
       if current_account # already signed in; attempt to connect            
         if account # someone's already connected
           flash[:error] = "Someone's already connected to that account!"
         else # connect; Account never reaches here
           flash[:notice] = "<i class=\"fa fa-#{@provider.icon}\"></i> Connected!"
-          current_account.connections.build(provider: @provider.display_name, provider_uid: env['omniauth.auth']['uid'], omniauth_hash: env['omniauth.auth'])
+          current_account.site_links.build(provider: @provider.display_name, provider_uid: env['omniauth.auth']['uid'], omniauth_hash: env['omniauth.auth'])
           current_account.picture_url = @provider.image.call(env['omniauth.auth']) unless current_account.picture
           current_account.save
         end
@@ -40,7 +40,7 @@ ActivateApp::App.controller do
           @account.name = env['omniauth.auth']['info']['name']
           @account.email = env['omniauth.auth']['info']['email']  
           @account.picture_url = @provider.image.call(env['omniauth.auth'])
-          @account.connections.build(provider: @provider.display_name, provider_uid: env['omniauth.auth']['uid'], omniauth_hash: env['omniauth.auth'])
+          @account.site_links.build(provider: @provider.display_name, provider_uid: env['omniauth.auth']['uid'], omniauth_hash: env['omniauth.auth'])
           erb :'accounts/build'
         end
       end

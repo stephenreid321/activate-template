@@ -1,4 +1,4 @@
-class Connection
+class SiteLink
   include Mongoid::Document
   include Mongoid::Timestamps
 

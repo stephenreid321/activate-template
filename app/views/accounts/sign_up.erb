@@ -5,13 +5,15 @@
 
       <a href="<%=url(:accounts, :new)%>">Sign up with an email address</a>
 
-      <p style="margin: 10px; text-align: center">
-        or   
-      </p>
+      <% if !Account.providers.empty? %>
+        <p style="margin: 10px; text-align: center">
+          or   
+        </p>
 
-      <%  Account.providers.each { |provider| %>             
-        <a class="btn btn-default" href="/auth/<%=provider.omniauth_name%>"><i class="fa fa-<%=provider.icon%>"></i> Sign up via <%=provider.display_name%></a>
-      <% } %>
+        <%  Account.providers.each { |provider| %>             
+          <a class="btn btn-default" href="/auth/<%=provider.omniauth_name%>"><i class="fa fa-<%=provider.icon%>"></i> Sign up via <%=provider.display_name%></a>
+        <% } %>
+      <% end %>
 
     </div>
   </div>

@@ -42,6 +42,14 @@ module ActivateApp
     get :home, :map => '/' do
       erb :home
     end
+    
+    get '/:slug' do
+      if @fragment = Fragment.find_by(slug: params[:slug], page: true)
+        erb :page
+      else
+        not_found
+      end
+    end    
      
   end         
 end

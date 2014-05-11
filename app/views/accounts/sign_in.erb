@@ -14,25 +14,30 @@
         </div>
         <button class="btn btn-primary" type="submit">Sign in</button>  
         <div style="margin: 10px" >
-          <a href="javascript:;" onclick="$(this).hide();$('#sign_in').hide();$('#forgot').show();$('#forgot_email').focus();">Forgot your password?</a>
+          <a href="javascript:;" onclick="$(this).hide();
+                $('#sign_in').hide();
+                $('#forgot').show();
+                $('#forgot input').focus();">Forgot your password?</a>
         </div>
       <% end %>
 
       <% form_tag url(:accounts, :forgot_password), :id => 'forgot', :class => 'form-inline', :style => 'display: none' do %>
         <div class="form-group">
           <label class="sr-only">Email</label>   
-          <%= text_field_tag :email, :id => 'forgot-email', :class => 'form-control', :placeholder => 'Email', :style => 'width: 15em' %>
+          <%= text_field_tag :email, :class => 'form-control', :placeholder => 'Email', :style => 'width: 15em' %>
         </div>
         <button class="btn btn-primary" type="submit">Reset password</button>
       <% end %>
 
-      <p style="margin-top: 10px">If you've connected your account to an external service:</p>
+      <% if !Account.providers.empty? %>
+        <p style="margin-top: 10px">If you've connected your account to an external service:</p>
 
-      <p style="margin: 1em 0">
-        <%  Account.providers.each { |provider| %>             
-          <a class="btn btn-default" href="/auth/<%=provider.omniauth_name%>"><i class="fa fa-<%=provider.icon%>"></i> Sign in with <%=provider.display_name%></a>
-        <% } %>
-      </p> 
+        <p style="margin: 1em 0">
+          <%  Account.providers.each { |provider| %>             
+            <a class="btn btn-default" href="/auth/<%=provider.omniauth_name%>"><i class="fa fa-<%=provider.icon%>"></i> Sign in with <%=provider.display_name%></a>
+          <% } %>
+        </p> 
+      <% end %>
 
     </div>
   </div>

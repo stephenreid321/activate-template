@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ActivateApp</title>
+    <title><%=ENV['SITE_NAME']%></title>
 
     <%
     [
       'bootstrap.min.css',
       'font-awesome.min.css',
-      'bootstrap-wysihtml5-0.0.3.css'    
+      'app.css'
       ].each { |file| %> 
       <link rel="stylesheet" href="/stylesheets/<%=file%>" />    
     <% } %>
@@ -18,83 +18,58 @@
     <% [
       'jquery-1.11.0.min.js',
       'bootstrap.min.js',
-      'jquery.confirm.js',
-      'jquery.popupWindow.js',
+      'app.js',
       ].each { |file| %>
       <script src="/javascripts/<%=file%>"></script>
     <% } %>
 
     <%= favicon_tag 'favicon.png' %>
-
-    <meta name="description" content="<%=Fragment.find_by(slug: 'description').try(:body)%>">
+    <meta name="description" content="<%=eval(f('description'))%>">
     <meta property="og:image" content="http://<%=ENV['DOMAIN']%>/images/og.png" />     
-
-    <style>
-      body { padding: 60px 20px; }
-      .restore-opacity { opacity: 0.5; }
-      .restore-opacity:hover { opacity: 1 !important  }
-      a.edit { color: black; text-decoration: none; opacity: 0.25 }
-      a.edit:hover { opacity: 1 }
-      select[name*=day], select[name*=month], select[name*=year], select[name*=hour], select[name*=min] { display:inline; width: auto } 
-    </style>
 
   </head>
   <body>
 
-    <div style="z-index: 1040; width: 40%; margin-left: -20%; left: 50%; position: absolute; margin-top: -40px">
-      <% {:error => 'alert-danger', :warning => 'alert-warning', :notice => 'alert-info'}.each { |k,v| %>
-        <% if flash[k] %>
-          <div id="top-alert" class="fade in alert <%=v%> alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <%= flash[k] %>
-          </div>
-        <% end %>        
-      <% } %>       
-    </div>
-    <script>
-      $(function() {
-        $(".alert").alert()
-        window.setTimeout(function() {
-          $("#top-alert").alert('close');
-        }, 3000);
-      });
-    </script>
+    <%= partial :alert %>
 
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-top-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="<%=url(:home)%>">ActivateApp</a>
-      </div>
-      <div class="collapse navbar-collapse navbar-top-collapse"> 
-        <div class="navbar-right">
-          <ul class="nav navbar-nav">
-            <% if current_account %>              
-              <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;"><%=current_account.name%> <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="<%=url(:accounts, :edit)%>">Edit profile</a></li>
-                  <li><a href="<%=url(:accounts, :sign_out)%>">Sign out</a></li>
-                </ul>
-              </li>               
-            <% else %>                            
-              <li>
-                <a href="<%=url(:accounts, :sign_up)%>">Sign up</a>
-              </li>
-              <li>
-                <a href="<%=url(:accounts, :sign_in)%>">Sign in</a>
-              </li>                
-            <% end %>
-          </ul>
+    <div class="container-fluid">
+
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-top-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="<%=url(:home)%>"><%=ENV['SITE_NAME']%></a>
         </div>
-      </div>
-    </nav>    
+        <div class="collapse navbar-collapse navbar-top-collapse"> 
+          <div class="navbar-right">
+            <ul class="nav navbar-nav">
+              <% if current_account %>              
+                <li class="dropdown">
+                  <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;"><%=current_account.name%> <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="<%=url(:accounts, :edit)%>">Edit profile</a></li>
+                    <li><a href="<%=url(:accounts, :sign_out)%>">Sign out</a></li>
+                  </ul>
+                </li>               
+              <% else %>                            
+                <li>
+                  <a href="<%=url(:accounts, :sign_up)%>">Sign up</a>
+                </li>
+                <li>
+                  <a href="<%=url(:accounts, :sign_in)%>">Sign in</a>
+                </li>                
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>    
 
-    <%= yield %>
+      <%= yield %>
+    </div>
 
   </body>
 </html>
