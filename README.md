@@ -25,17 +25,6 @@ Activate Digital Padrino/Mongoid template project.
 # gem 'restforce'
 # gem 'heroku-api'
 
-# Caching
-# gem 'rack-cache'
-# gem 'memcachier'
-# gem 'dalli'
-```
-
-## Rack::Cache
-```ruby
-use Rack::Cache, :metastore => Dalli::Client.new, :entitystore  => 'file:tmp/cache/rack/body', :allow_reload => false
-```
-
 ## Delayed::Job
 ```ruby
 task :environment do

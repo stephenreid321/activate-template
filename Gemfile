@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.0.0'
-gem 'puma'
+gem 'unicorn'
 gem 'padrino', '0.12.0'
 gem 'rake'
 
@@ -20,6 +20,11 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin'
+
+# Caching
+gem 'rack-cache'
+gem 'memcachier'
+gem 'dalli'
 
 # Error reporting
 gem 'airbrake'

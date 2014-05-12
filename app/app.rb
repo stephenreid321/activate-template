@@ -19,6 +19,9 @@ module ActivateApp
     OmniAuth.config.on_failure = Proc.new { |env|
       OmniAuth::FailureEndpoint.new(env).redirect_to_failure
     }
+    if Padrino.env == :production
+      use Rack::Cache, :metastore => Dalli::Client.new, :entitystore  => 'file:tmp/cache/rack/body', :allow_reload => false
+    end
     
     set :sessions, :expire_after => 1.year    
     set :public_folder, Padrino.root('app', 'assets')
