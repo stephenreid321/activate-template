@@ -21,8 +21,8 @@ class Account
   end  
   
   # Site links  
-  has_many :site_links, :dependent => :destroy
-  accepts_nested_attributes_for :site_links
+  has_many :provider_links, :dependent => :destroy
+  accepts_nested_attributes_for :provider_links
   def self.providers
     [
       # Provider.new('Twitter', image: ->(hash){ hash['info']['image'].gsub(/_normal/,'') }),
@@ -60,7 +60,7 @@ class Account
       :time_zone => :select,
       :password => :password,
       :password_confirmation => :password,
-      :site_links => :collection
+      :provider_links => :collection
     }
   end
     

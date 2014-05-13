@@ -22,10 +22,7 @@ class TestAccounts < ActiveSupport::TestCase
     
   test 'signing in' do
     @account = create(:account)
-    visit '/accounts/sign_in'
-    fill_in 'Email', :with => @account.email
-    fill_in 'Password', :with => @account.password
-    click_button 'Sign in'
+    login_as(@account)
     assert page.has_content? 'Signed in'
   end   
   

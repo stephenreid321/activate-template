@@ -39,7 +39,7 @@ ActivateApp::App.controller :accounts do
     @account = Account.new(params[:account])
     if session['omniauth.auth']
       @provider = Account.provider_object(session['omniauth.auth']['provider'])
-      @account.site_links.build(provider: @provider.display_name, provider_uid: session['omniauth.auth']['uid'], omniauth_hash: session['omniauth.auth'])
+      @account.provider_links.build(provider: @provider.display_name, provider_uid: session['omniauth.auth']['uid'], omniauth_hash: session['omniauth.auth'])
       @account.picture_url = @provider.image.call(session['omniauth.auth']) unless @account.picture
     end        
     if @account.save
@@ -74,7 +74,7 @@ ActivateApp::App.controller :accounts do
     sign_in_required!
     @provider = Account.provider_object(params[:provider])
     @account = current_account
-    @account.picture_url = @provider.image.call(@account.site_links.find_by(provider: @provider.display_name).omniauth_hash)
+    @account.picture_url = @provider.image.call(@account.provider_links.find_by(provider: @provider.display_name).omniauth_hash)
     if @account.save
       flash[:notice] = "<i class=\"fa fa-#{@provider.icon}\"></i> Grabbed your picture!"
       redirect url(:accounts, :edit)
@@ -88,7 +88,7 @@ ActivateApp::App.controller :accounts do
     sign_in_required!
     @provider = Account.provider_object(params[:provider])    
     @account = current_account
-    if @account.site_links.find_by(provider: @provider.display_name).destroy
+    if @account.provider_links.find_by(provider: @provider.display_name).destroy
       flash[:notice] = "<i class=\"fa fa-#{@provider.icon}\"></i> Disconnected!"
       redirect url(:accounts, :edit)
     else

@@ -1,4 +1,4 @@
-class SiteLink
+class ProviderLink
   include Mongoid::Document
   include Mongoid::Timestamps
 

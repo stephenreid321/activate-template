@@ -25,3 +25,14 @@ FactoryGirl.define do
   end
    
 end
+
+class ActiveSupport::TestCase
+
+  def login_as(account)
+    visit '/accounts/sign_in'
+    fill_in 'Email', :with => account.email
+    fill_in 'Password', :with => account.password
+    click_button 'Sign in'
+  end
+    
+end

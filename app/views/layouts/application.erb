@@ -45,6 +45,9 @@
           <a class="navbar-brand" href="<%=url(:home)%>"><%=ENV['SITE_NAME']%></a>
         </div>
         <div class="collapse navbar-collapse navbar-top-collapse"> 
+          
+          <%= eval(f('nav')) %>
+          
           <div class="navbar-right">
             <ul class="nav navbar-nav">
               <% if current_account %>              

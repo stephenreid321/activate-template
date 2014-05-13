@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'unicorn'
 gem 'padrino', '0.12.0'
+gem 'nokogiri', '1.6.1'
 gem 'rake'
 
 # Admin

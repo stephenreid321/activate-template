@@ -1,4 +1,4 @@
-class Thumb
+class DragonflyJob
   include Mongoid::Document
   include Mongoid::Timestamps
 
