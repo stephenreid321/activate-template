@@ -21,11 +21,6 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin'
 
-# Caching
-gem 'rack-cache'
-gem 'memcachier'
-gem 'dalli'
-
 # Error reporting
 gem 'airbrake'
 

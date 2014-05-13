@@ -51,7 +51,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    dalli (2.7.1)
     dragonfly (1.0.4)
       multi_json (~> 1.0)
       rack
@@ -98,7 +97,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    memcachier (0.0.2)
     mime-types (1.25.1)
     mini_portile (0.5.3)
     minitest (4.7.5)
@@ -175,8 +173,6 @@ GEM
       padrino-core (= 0.12.0)
     polyglot (0.3.4)
     rack (1.5.2)
-    rack-cache (1.2)
-      rack (>= 0.4)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.2)
@@ -215,12 +211,10 @@ DEPENDENCIES
   bcrypt
   bson_ext
   capybara
-  dalli
   dragonfly
   dragonfly-mongo_data_store
   dragonfly-s3_data_store
   factory_girl
-  memcachier
   mongoid!
   omniauth
   omniauth-facebook
@@ -228,7 +222,6 @@ DEPENDENCIES
   omniauth-linkedin
   omniauth-twitter
   padrino (= 0.12.0)
-  rack-cache
   rake
   turn
   unicorn
