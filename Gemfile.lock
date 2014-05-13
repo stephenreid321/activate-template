@@ -36,6 +36,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    addressable (2.3.5)
     airbrake (3.1.16)
       builder
       multi_json
@@ -48,6 +49,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    cliver (0.3.2)
     dragonfly (1.0.4)
       multi_json (~> 1.0)
       rack
@@ -88,6 +90,8 @@ GEM
     jwt (0.1.13)
       multi_json (>= 1.5)
     kgio (2.9.2)
+    launchy (2.4.2)
+      addressable (~> 2.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -163,6 +167,11 @@ GEM
     padrino-mailer (0.12.0)
       mail (~> 2.5.3)
       padrino-core (= 0.12.0)
+    poltergeist (1.5.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     polyglot (0.3.4)
     rack (1.5.2)
     rack-protection (1.5.3)
@@ -191,6 +200,7 @@ GEM
       raindrops (~> 0.7)
     url_mount (0.2.1)
       rack
+    websocket-driver (0.3.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -205,6 +215,7 @@ DEPENDENCIES
   dragonfly
   dragonfly-s3_data_store
   factory_girl
+  launchy
   mongoid!
   omniauth
   omniauth-facebook
@@ -212,6 +223,7 @@ DEPENDENCIES
   omniauth-linkedin
   omniauth-twitter
   padrino (= 0.12.0)
+  poltergeist
   rake
   turn
   unicorn

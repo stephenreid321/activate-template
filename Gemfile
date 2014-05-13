@@ -29,4 +29,6 @@ group :test do
   gem 'factory_girl'
   gem 'turn'
   gem 'capybara'
+  gem 'launchy'
+  gem 'poltergeist'
 end
