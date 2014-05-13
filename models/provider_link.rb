@@ -18,6 +18,9 @@ class ProviderLink
   
   def self.fields_for_form
     {
+      :provider => :text,
+      :provider_uid => :text,
+      :omniauth_hash => :text_area,
       :account_id => :lookup
     }
   end
