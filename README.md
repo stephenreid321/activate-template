@@ -12,11 +12,6 @@ Activate Digital Padrino/Mongoid template project.
 # gem 'mail'
 # gem 'premailer'
 
-# Caching
-# gem 'rack-cache'
-# gem 'memcachier'
-# gem 'dalli'
-
 # Asynchronous tasks
 # gem 'delayed_job_mongoid', github: 'shkbahmad/delayed_job_mongoid'
 # gem 'hirefire-resource'
@@ -29,6 +24,11 @@ Activate Digital Padrino/Mongoid template project.
 # gem 'hominid'
 # gem 'restforce'
 # gem 'heroku-api'
+
+# Caching
+# gem 'rack-cache'
+# gem 'memcachier'
+# gem 'dalli'
 
 ## Delayed::Job
 ```ruby
