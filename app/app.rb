@@ -41,12 +41,12 @@ module ActivateApp
     
     get :home, :map => '/' do
       @fragment = Fragment.find_by(slug: 'home', page: true) || not_found
-      erb(:page)
+      erb :page
     end
     
     get '/:slug' do
       @fragment = Fragment.find_by(slug: params[:slug], page: true) || not_found
-      erb(:page)
+      erb :page
     end    
      
   end         
