@@ -18,7 +18,7 @@
         $('.use-picture').popover({trigger: 'hover', html: true});
       });
     </script>
-    <% Account.providers.each { |provider| %>
+      <% Provider.registered.each { |provider| %>
       <% if @account.persisted? or (session['omniauth.auth'] and session['omniauth.auth']['provider'] == provider.omniauth_name) %>
         <div class="row" style="margin-bottom: 10px">
           <div class="col-md-3" style="text-align: right"><i class="fa fa-<%=provider.icon%>"></i></div>

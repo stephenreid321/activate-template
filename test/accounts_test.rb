@@ -10,7 +10,7 @@ class TestAccounts < ActiveSupport::TestCase
   test 'signing up' do
     @account = build(:account)
     visit '/accounts/sign_up'
-    click_link 'Sign up with an email address' if !Account.providers.empty?
+    click_link 'Sign up with an email address' if !Provider.registered.empty?
     fill_in 'Name', :with => @account.name
     fill_in 'Email', :with => @account.email
     select @account.time_zone, :from => 'Time zone'

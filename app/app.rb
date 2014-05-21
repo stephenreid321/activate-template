@@ -11,11 +11,10 @@ module ActivateApp
     use Airbrake::Rack    
     use OmniAuth::Builder do
       provider :account
-      provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
-      provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
-      provider :google_oauth2, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET']
-      provider :linkedin, ENV['LINKEDIN_KEY'], ENV['LINKEDIN_SECRET']
-    end  
+      Provider.registered.each { |provider|
+        provider provider.omniauth_name, ENV["#{provider.display_name.upcase}_KEY"], ENV["#{provider.display_name.upcase}_SECRET"]
+      }
+    end 
     OmniAuth.config.on_failure = Proc.new { |env|
       OmniAuth::FailureEndpoint.new(env).redirect_to_failure
     }
@@ -45,8 +44,11 @@ module ActivateApp
     end
     
     get '/:slug' do
-      @fragment = Fragment.find_by(slug: params[:slug], page: true) || not_found
-      erb :page
+      if @fragment = Fragment.find_by(slug: params[:slug], page: true)
+        erb :page
+      else
+        pass
+      end
     end    
      
   end         

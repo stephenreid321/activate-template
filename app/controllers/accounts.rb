@@ -1,7 +1,7 @@
 ActivateApp::App.controller :accounts do
   
   get :sign_up do
-    redirect url(:accounts, :new) if Account.providers.empty?
+    redirect url(:accounts, :new) if Provider.registered.empty?
     erb :'accounts/sign_up'
   end    
   
@@ -38,7 +38,7 @@ ActivateApp::App.controller :accounts do
   post :new do
     @account = Account.new(params[:account])
     if session['omniauth.auth']
-      @provider = Account.provider_object(session['omniauth.auth']['provider'])
+      @provider = Provider.object(session['omniauth.auth']['provider'])
       @account.provider_links.build(provider: @provider.display_name, provider_uid: session['omniauth.auth']['uid'], omniauth_hash: session['omniauth.auth'])
       @account.picture_url = @provider.image.call(session['omniauth.auth']) unless @account.picture
     end        
@@ -72,7 +72,7 @@ ActivateApp::App.controller :accounts do
   
   get :use_picture, :with => :provider do
     sign_in_required!
-    @provider = Account.provider_object(params[:provider])
+    @provider = Provider.object(params[:provider])
     @account = current_account
     @account.picture_url = @provider.image.call(@account.provider_links.find_by(provider: @provider.display_name).omniauth_hash)
     if @account.save
@@ -86,7 +86,7 @@ ActivateApp::App.controller :accounts do
   
   get :disconnect, :with => :provider do
     sign_in_required!
-    @provider = Account.provider_object(params[:provider])    
+    @provider = Provider.object(params[:provider])    
     @account = current_account
     if @account.provider_links.find_by(provider: @provider.display_name).destroy
       flash[:notice] = "<i class=\"fa fa-#{@provider.icon}\"></i> Disconnected!"
