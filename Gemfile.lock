@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/wordsandwriting/activate-admin.git
-  revision: ed347c28fd53a9d9b8cbdb87e0f6828031e21981
+  revision: 526c29702c02f299ef048091b311aed25c17559b
   specs:
     activate-admin (0.0.1)
       heroku-api
@@ -39,7 +39,6 @@ GEM
     airbrake (3.1.17)
       builder
       multi_json
-    ansi (1.4.3)
     bcrypt (3.1.7)
     bson (2.2.4)
     builder (3.2.2)
@@ -100,6 +99,8 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.6.0)
     minitest (5.3.4)
+    minitest-rg (5.1.0)
+      minitest (~> 5.0)
     moneta (0.7.20)
     moped (2.0.0.rc1)
       bson (~> 2.2)
@@ -161,6 +162,7 @@ GEM
     padrino-core (0.12.1)
       activesupport (>= 3.1)
       http_router (~> 0.11.0)
+      padrino-support (= 0.12.1)
       rack-protection (>= 1.5.0)
       sinatra (~> 1.4.2)
       thor (~> 0.18.0)
@@ -199,8 +201,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turn (0.9.6)
-      ansi
     tzinfo (1.1.0)
       thread_safe (~> 0.1)
     unicorn (4.8.3)
@@ -225,6 +225,7 @@ DEPENDENCIES
   dragonfly-s3_data_store
   factory_girl
   launchy
+  minitest-rg
   mongoid!
   omniauth
   omniauth-facebook
@@ -234,6 +235,5 @@ DEPENDENCIES
   padrino (= 0.12.1)
   poltergeist
   rake
-  turn
   unicorn
   will_paginate!

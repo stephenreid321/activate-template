@@ -8,7 +8,7 @@ class TestAccounts < ActiveSupport::TestCase
   end
   
   test 'signing up' do
-    @account = build(:account)
+    @account = FactoryGirl.build(:account)
     visit '/accounts/sign_up'
     click_link 'Sign up with an email address' if !Provider.registered.empty?
     fill_in 'Name', :with => @account.name
@@ -21,7 +21,7 @@ class TestAccounts < ActiveSupport::TestCase
   end    
     
   test 'signing in' do
-    @account = create(:account)
+    @account = FactoryGirl.create(:account)
     login_as(@account)
     assert page.has_content? 'Signed in'
   end   

@@ -26,7 +26,7 @@ gem 'omniauth-linkedin'
 gem 'airbrake'
 
 group :test do
-  gem 'turn'  
+  gem 'minitest-rg'
   gem 'launchy'
   gem 'factory_girl'
   gem 'capybara'
