@@ -29,6 +29,7 @@ Activate Digital Padrino/Mongoid template project.
 # gem 'rack-cache'
 # gem 'memcachier'
 # gem 'dalli'
+```
 
 ## Delayed::Job
 ```ruby
@@ -82,13 +83,13 @@ HireFire::Resource.configure do |config|
 end
 ```
 
-## Padrino::Mailer with Gmail
+## Padrino::Mailer + Mandrill
 ```ruby
 register Padrino::Mailer
-set :delivery_method, :smtp => {:user_name => ENV['GMAIL_USERNAME'], :password => ENV['GMAIL_PASSWORD'], :address => "smtp.gmail.com", :port => 587, :authentication => :plain, :enable_starttls_auto => true}
-```
-
-## Caching
-```ruby
-use Rack::Cache, :metastore => Dalli::Client.new, :entitystore  => 'file:tmp/cache/rack/body', :allow_reload => false
+set :delivery_method, :smtp => { 
+  :address              => "smtp.mandrillapp.com",
+  :port                 => 587,
+  :user_name            => ENV['MANDRILL_USERNAME'],
+  :password             => ENV['MANDRILL_APIKEY']
+}   
 ```
