@@ -10,7 +10,8 @@
     [
       'bootstrap.min.css',
       'font-awesome.min.css',
-      'app.css'
+      'share.css',
+      'app.css'        
       ].each { |file| %> 
       <link rel="stylesheet" href="/stylesheets/<%=file%>" />    
     <% } %>
@@ -72,6 +73,7 @@
       </nav>    
 
       <%= yield %>
+      
     </div>
 
   </body>
