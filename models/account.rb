@@ -5,7 +5,7 @@ class Account
             
   field :name, :type => String
   field :email, :type => String
-  field :role, :type => String, :default => 'user'
+  field :admin, :type => Boolean
   field :time_zone, :type => String
   field :crypted_password, :type => String
   field :picture_uid, :type => String
@@ -25,7 +25,7 @@ class Account
           
   attr_accessor :password, :password_confirmation 
 
-  validates_presence_of :name, :role, :time_zone    
+  validates_presence_of :name, :time_zone    
   validates_presence_of     :email
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :email,    :case_sensitive => false
@@ -36,7 +36,7 @@ class Account
   validates_confirmation_of :password,                   :if => :password_required  
         
   def self.fields_for_index
-    [:name, :email, :role, :time_zone]
+    [:name, :email, :admin, :time_zone]
   end
   
   def self.fields_for_form
@@ -44,7 +44,7 @@ class Account
       :name => :text,
       :email => :text,
       :picture => :image,
-      :role => :select,
+      :admin => :check_box,
       :time_zone => :select,
       :password => :password,
       :password_confirmation => :password,
@@ -67,11 +67,7 @@ class Account
   def self.time_zones
     ['']+ActiveSupport::TimeZone::MAPPING.keys.sort
   end  
-  
-  def self.roles
-    ['user','admin']
-  end    
-  
+    
   def self.lookup
     :email
   end
