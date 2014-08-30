@@ -8,6 +8,7 @@ Activate Digital Padrino/Mongoid template project.
 gem 'delayed_job_mongoid', github: 'shkbahmad/delayed_job_mongoid'
 ```
 
+tasks/jobs.rake:
 ```ruby
 task :environment do
   require File.expand_path(File.join(File.dirname(__FILE__), '..', 'config', 'boot.rb'))
