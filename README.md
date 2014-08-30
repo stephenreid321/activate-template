@@ -93,3 +93,48 @@ set :delivery_method, :smtp => {
   :password             => ENV['MANDRILL_APIKEY']
 }   
 ```
+
+## ActiveRecord
+```
+gem 'pg'
+gem 'activerecord', '>=4.0', require: 'active_record'
+```
+
+boot.rb:
+```
+ActiveRecord::Base.time_zone_aware_attributes = true
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+```
+
+app.rb:
+```
+use ActiveRecord::ConnectionAdapters::ConnectionManagement
+```
+
+unicorn.rb:
+```
+before_fork do |server, worker|
+  Signal.trap 'TERM' do
+    puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
+    Process.kill 'QUIT', Process.pid
+  end
+
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.connection.disconnect!
+end
+
+after_fork do |server, worker|
+  Signal.trap 'TERM' do
+    puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
+  end
+
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+end
+```
+
+Rakefile:
+```
+PadrinoTasks.use(:activerecord)
+```
+
