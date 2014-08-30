@@ -55,18 +55,6 @@ module Delayed
 end
 ```
 
-## Padrino::Mailer + Mandrill
-app.rb:
-```ruby
-register Padrino::Mailer
-set :delivery_method, :smtp => { 
-  :address              => "smtp.mandrillapp.com",
-  :port                 => 587,
-  :user_name            => ENV['MANDRILL_USERNAME'],
-  :password             => ENV['MANDRILL_APIKEY']
-} 
-```
-
 ## Postgres + ActiveRecord
 ```
 gem 'pg'
