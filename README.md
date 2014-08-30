@@ -3,35 +3,11 @@ activate-template
 
 Activate Digital Padrino/Mongoid template project.
 
-## Other useful gems
-```
-# Autolinking
-# gem 'rinku'
-
-# Email
-# gem 'mail'
-# gem 'premailer'
-
-# Asynchronous tasks
-# gem 'delayed_job_mongoid', github: 'shkbahmad/delayed_job_mongoid'
-# gem 'hirefire-resource'
-
-# Interacting with other websites
-# gem 'mechanize'
-# gem 'oauth'
-# gem 'twitter'
-# gem 'koala'
-# gem 'hominid'
-# gem 'restforce'
-# gem 'heroku-api'
-
-# Caching
-# gem 'rack-cache'
-# gem 'memcachier'
-# gem 'dalli'
-```
-
 ## Delayed::Job
+```
+gem 'delayed_job_mongoid', github: 'shkbahmad/delayed_job_mongoid'
+```
+
 ```ruby
 task :environment do
   require File.expand_path(File.join(File.dirname(__FILE__), '..', 'config', 'boot.rb'))
@@ -73,6 +49,10 @@ end
 ```
 
 ## Delayed::Job + Hirefire
+```
+gem 'hirefire-resource'
+```
+
 ```ruby
 use HireFire::Middleware # config.ru
 
@@ -91,10 +71,10 @@ set :delivery_method, :smtp => {
   :port                 => 587,
   :user_name            => ENV['MANDRILL_USERNAME'],
   :password             => ENV['MANDRILL_APIKEY']
-}   
+} 
 ```
 
-## ActiveRecord
+## Postgres + ActiveRecord
 ```
 gem 'pg'
 gem 'activerecord', '>=4.0', require: 'active_record'
