@@ -35,6 +35,11 @@ namespace :jobs do
 end
 ```
 
+Procfile:
+```
+worker: bundle exec rake jobs:work   
+```
+
 lib/delayed_job_airbrake.rb:
 ```ruby
 module Delayed
