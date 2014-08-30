@@ -34,7 +34,7 @@ namespace :jobs do
 end
 ```
 
-## Delayed::Job + Airbrake
+lib/delayed_job_airbrake.rb:
 ```ruby
 module Delayed
   class Worker
@@ -49,22 +49,8 @@ module Delayed
 end
 ```
 
-## Delayed::Job + Hirefire
-```
-gem 'hirefire-resource'
-```
-
-```ruby
-use HireFire::Middleware # config.ru
-
-HireFire::Resource.configure do |config|
-  config.dyno(:worker) do
-    HireFire::Macro::Delayed::Job.queue(:mapper => :mongoid)
-  end
-end
-```
-
 ## Padrino::Mailer + Mandrill
+app.rb:
 ```ruby
 register Padrino::Mailer
 set :delivery_method, :smtp => { 
