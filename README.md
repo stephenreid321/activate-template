@@ -5,7 +5,8 @@ Activate Digital Padrino/Mongoid template project
 
 ## Delayed::Job
 ```
-gem 'delayed_job_mongoid', github: 'shkbahmad/delayed_job_mongoid'
+gem 'delayed_job_mongoid'
+gem 'delayed_job_active_record'
 ```
 
 tasks/jobs.rake:
