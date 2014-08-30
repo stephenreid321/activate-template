@@ -1,7 +1,7 @@
 activate-template
 =================
 
-Activate Digital Padrino/Mongoid template project.
+Activate Digital Padrino/Mongoid template project
 
 ## Delayed::Job
 ```
