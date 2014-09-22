@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: 4e3b39e9bbcf1b36d0472c6b09f8f394c55065f4
+  revision: d90a94608ef7409d247ff4e3408f022f97caf8b1
   specs:
     mongoid (4.0.0)
       activemodel (~> 4.0)
@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/padrino/padrino-framework.git
-  revision: 0048193c1661168d4c73d184ee401e0147fe61ae
+  revision: 8c3514ddb4e21b45a392de952d315c5dfcc6a14c
   specs:
     padrino (0.12.3)
       padrino-admin (= 0.12.3)
@@ -55,7 +55,7 @@ GIT
 
 GIT
   remote: git://github.com/wordsandwriting/activate-admin.git
-  revision: 9b61383bc3680d82defa468a29c9545372758805
+  revision: 1fc4bd3c216104573d5e1c2202608c9152e171a6
   specs:
     activate-admin (0.0.1)
       activate-tools
@@ -72,23 +72,23 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (4.1.5)
-      activesupport (= 4.1.5)
+    activemodel (4.1.6)
+      activesupport (= 4.1.6)
       builder (~> 3.1)
-    activesupport (4.1.5)
+    activesupport (4.1.6)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
-    airbrake (4.0.0)
+    airbrake (4.1.0)
       builder
       multi_json
     bcrypt (3.1.7)
     bson (2.3.0)
     builder (3.2.2)
-    capybara (2.4.1)
+    capybara (2.4.3)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -116,7 +116,7 @@ GEM
       fog-softlayer
       ipaddress (~> 0.5)
       nokogiri (~> 1.5, >= 1.5.11)
-    fog-brightbox (0.4.1)
+    fog-brightbox (0.5.1)
       fog-core (~> 1.22)
       fog-json
       inflecto
@@ -129,7 +129,7 @@ GEM
       net-ssh (>= 2.1.3)
     fog-json (1.0.0)
       multi_json (~> 1.0)
-    fog-softlayer (0.3.16)
+    fog-softlayer (0.3.17)
       fog-core
       fog-json
     formatador (0.2.5)
