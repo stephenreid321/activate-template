@@ -42,17 +42,11 @@ class Account
       :picture => :image,
       :admin => :check_box,
       :time_zone => :select,
-      :password => :password,
+      :password => {:type => :password, :new_hint => 'Leave blank to keep existing password'},
       :password_confirmation => :password,
       :provider_links => :collection
     }
   end
-    
-  def self.edit_hints
-    {
-      :password => 'Leave blank to keep existing password'      
-    }
-  end   
     
   def self.human_attribute_name(attr, options={})  
     {
@@ -63,11 +57,7 @@ class Account
   def self.time_zones
     ['']+ActiveSupport::TimeZone::MAPPING.keys.sort
   end  
-    
-  def self.lookup
-    :email
-  end
-    
+      
   def uid
     id
   end

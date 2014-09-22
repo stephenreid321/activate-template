@@ -25,9 +25,5 @@ class ProviderLink
   def omniauth_hash=(val)
     self.old_omniauth_hash = val.is_a?(String) ? eval(val) : val
   end
-  
-  def self.lookup
-    :provider
-  end
-  
+   
 end
