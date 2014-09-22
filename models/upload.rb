@@ -9,11 +9,7 @@ class Upload
   # Dragonfly
   dragonfly_accessor :file  
     
-  def self.fields_for_index
-    [:file_name, :created_at]
-  end
-  
-  def self.fields_for_form
+  def self.admin_fields
     {
       :file => :file
     }

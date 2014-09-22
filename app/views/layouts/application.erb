@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title><%=ENV['SITE_NAME']%></title>
-
     <%
     [
       'bootstrap.min.css',
@@ -25,8 +23,10 @@
     <% } %>
 
     <%= favicon_tag 'favicon.png' %>
+    <title><%=ENV['SITE_NAME']%></title>
     <meta name="description" content="<%=eval(f('description'))%>">
-    <meta property="og:image" content="http://<%=ENV['DOMAIN']%>/images/og.png" />     
+    <meta property="og:title" content="<%=ENV['SITE_NAME']%>" />    
+    <meta property="og:image" content="http://<%=ENV['DOMAIN']%>/images/og.png" />
 
   </head>
   <body>

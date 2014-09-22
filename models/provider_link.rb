@@ -12,11 +12,7 @@ class ProviderLink
   validates_uniqueness_of :provider, :scope => :account_id
   validates_uniqueness_of :provider_uid, :scope => :provider
       
-  def self.fields_for_index
-    [:provider, :provider_uid, :omniauth_hash, :account_id]
-  end
-  
-  def self.fields_for_form
+  def self.admin_fields
     {
       :provider => :text,
       :provider_uid => :text,
