@@ -2,7 +2,7 @@
 .share-buttons .facebook .button { background: #4966B7; padding: 2px 4px; color: white; border-radius: 4px; font-size: 13px; margin-right: 1px }
 .share-buttons .facebook .button:hover { text-decoration:none; background: #3E5BAA }
 
-.share-buttons .twitter .button { background: #E8E8E8; padding: 2px 4px; color: black; border-radius: 4px; font-size: 13px; margin-right: 1px }
+.share-buttons .twitter .button { background: #E8E8E8; padding: 1px 3px; border: 1px solid #ddd; color: black; border-radius: 4px; font-size: 13px; margin-right: 1px }
 .share-buttons .twitter .button i { color: #55ACEE }
 .share-buttons .twitter .button:hover { text-decoration:none; background: #ddd }
 

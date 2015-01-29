@@ -2,9 +2,10 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 gem 'unicorn'
-gem 'padrino', github: 'padrino/padrino-framework'
+gem 'padrino'
 gem 'rake'
 gem 'erubis'
+gem 'rack', '1.5.2'
 
 # Admin
 gem 'will_paginate', github: 'mislav/will_paginate'
@@ -12,7 +13,7 @@ gem 'activate-tools', github: 'wordsandwriting/activate-tools'
 gem 'activate-admin', github: 'wordsandwriting/activate-admin'
 
 # Data storage
-gem 'mongoid', github: 'mongoid/mongoid'
+gem 'mongoid'
 gem 'dragonfly'
 gem 'dragonfly-s3_data_store'
 
@@ -34,3 +35,6 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
 end
+
+# Interacting with websites
+gem 'mechanize'

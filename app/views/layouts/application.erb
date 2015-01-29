@@ -22,11 +22,16 @@
       <script src="/javascripts/<%=file%>"></script>
     <% } %>
 
+    <script src="/webshim/polyfiller.js"></script> 
+    <script>
+      webshims.polyfill();
+    </script>      
+
     <%= favicon_tag 'favicon.png' %>
-    <title><%=ENV['SITE_NAME']%></title>
-    <meta name="description" content="<%=eval(f('description'))%>">
-    <meta property="og:title" content="<%=ENV['SITE_NAME']%>" />    
-    <meta property="og:image" content="http://<%=ENV['DOMAIN']%>/images/og.png" />
+    <title><%=@title%></title>
+    <meta name="description" content="<%=@og_desc%>">
+    <meta property="og:title" content="<%=@title%>" />
+    <meta property="og:image" content="<%=@og_image%>" />
 
   </head>
   <body>
@@ -43,12 +48,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<%=url(:home)%>"><%=ENV['SITE_NAME']%></a>
+          <a class="navbar-brand" href="<%=url(:home)%>">ActivateTemplate</a>
         </div>
         <div class="collapse navbar-collapse navbar-top-collapse"> 
-          
+
           <%= eval(f('nav')) %>
-          
+
           <div class="navbar-right">
             <ul class="nav navbar-nav">
               <% if current_account %>              
@@ -73,7 +78,7 @@
       </nav>    
 
       <%= yield %>
-      
+
     </div>
 
   </body>
