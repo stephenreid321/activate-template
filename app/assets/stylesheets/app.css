@@ -1,4 +1,4 @@
 
-
 body { padding-top: 60px }
+#alert-wrap { margin-top: -40px; position: absolute; z-index: 1040; width: 40%; margin-left: -20%; left: 50%; }
 
