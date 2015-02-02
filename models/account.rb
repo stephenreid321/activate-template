@@ -94,7 +94,7 @@ class Account
       mail.to = self.email
       mail.from = ENV['MAIL_FROM']
       mail.subject = "New password for #{ENV['DOMAIN']}"
-      mail.body = "Hi #{self.firstname},\n\nSomeone (hopefully you) requested a new password on #{ENV['DOMAIN']}.\n\nYour new password is: #{self.password}\n\nYou can sign in at http://#{ENV['DOMAIN']}/sign_in."
+      mail.body = "Hi #{self.firstname},\n\nSomeone (hopefully you) requested a new password for #{ENV['DOMAIN']}.\n\nYour new password is: #{self.password}\n\nYou can sign in at http://#{ENV['DOMAIN']}/sign_in."
       mail.deliver       
     else
       return false

@@ -31,11 +31,3 @@ gem 'airbrake'
 # Interacting with other web services
 gem 'mechanize'
 gem 'mail'
-
-group :test do
-  gem 'minitest-rg'
-  gem 'launchy'
-  gem 'factory_girl'
-  gem 'capybara'
-  gem 'poltergeist'
-end
