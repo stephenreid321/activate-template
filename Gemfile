@@ -28,6 +28,10 @@ gem 'omniauth-linkedin'
 # Error reporting
 gem 'airbrake'
 
+# Interacting with other web services
+gem 'mechanize'
+gem 'mail'
+
 group :test do
   gem 'minitest-rg'
   gem 'launchy'
@@ -35,6 +39,3 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
 end
-
-# Interacting with websites
-gem 'mechanize'

@@ -22,6 +22,15 @@ module ActivateApp
     set :sessions, :expire_after => 1.year    
     set :public_folder, Padrino.root('app', 'assets')
     set :default_builder, 'ActivateFormBuilder'    
+    
+    Mail.defaults do
+      delivery_method :smtp, {
+        :user_name => ENV['MANDRILL_USERNAME'],
+        :password => ENV['MANDRILL_APIKEY'],
+        :address => "smtp.mandrillapp.com",
+        :port => 587
+      }   
+    end 
        
     before do
       redirect "http://#{ENV['DOMAIN']}#{request.path}" if ENV['DOMAIN'] and request.env['HTTP_HOST'] != ENV['DOMAIN']

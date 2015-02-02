@@ -15,11 +15,8 @@ ActivateApp::App.controller :accounts do
   end
   
   post :forgot_password do
-    if @account = Account.find_by(email: /^#{params[:email]}$/)
-      @account.password = Account.generate_password(8)
-      @account.password_confirmation = @account.password
-      if @account.save
-        email(:to => @account.email, :subject => 'New password', :body => "Hi #{@account.name.split(' ').first},\n\nSomeone (hopefully you) requested a new password on #{ENV['DOMAIN']}.\n\nYour new password is: #{@account.password}\n\nYou can sign in at http://#{ENV['DOMAIN']}/sign_in.")
+    if @account = Account.find_by(email: /^#{Regexp.escape(params[:email])}$/)
+      if @account.reset_password!        
         flash[:notice] = "A new password was sent to #{@account.email}"
       else
         flash[:error] = "There was a problem resetting your password."

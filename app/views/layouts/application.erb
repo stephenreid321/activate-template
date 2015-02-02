@@ -15,7 +15,7 @@
     <% } %>
 
     <% [
-      'jquery-1.11.1.min.js',
+      'jquery-1.11.2.min.js',
       'bootstrap.min.js',
       'app.js',
       ].each { |file| %>
@@ -38,9 +38,8 @@
 
     <%= partial :alert %>
 
-    <div class="container-fluid">
-
-      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-top-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -54,31 +53,31 @@
 
           <%= eval(f('nav')) %>
 
-          <div class="navbar-right">
-            <ul class="nav navbar-nav">
-              <% if current_account %>              
-                <li class="dropdown">
-                  <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;"><%=current_account.name%> <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="<%=url(:accounts, :edit)%>">Edit profile</a></li>
-                    <li><a href="<%=url(:accounts, :sign_out)%>">Sign out</a></li>
-                  </ul>
-                </li>               
-              <% else %>                            
-                <li>
-                  <a href="<%=url(:accounts, :sign_up)%>">Sign up</a>
-                </li>
-                <li>
-                  <a href="<%=url(:accounts, :sign_in)%>">Sign in</a>
-                </li>                
-              <% end %>
-            </ul>
-          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <% if current_account %>              
+              <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;"><%=current_account.name%> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="<%=url(:accounts, :edit)%>">Edit profile</a></li>
+                  <li><a href="<%=url(:accounts, :sign_out)%>">Sign out</a></li>
+                </ul>
+              </li>               
+            <% else %>                            
+              <li>
+                <a href="<%=url(:accounts, :sign_up)%>">Sign up</a>
+              </li>
+              <li>
+                <a href="<%=url(:accounts, :sign_in)%>">Sign in</a>
+              </li>                
+            <% end %>
+          </ul>
+
         </div>
-      </nav>    
+      </div>
+    </nav>    
 
+    <div class="container-fluid">
       <%= yield %>
-
     </div>
 
   </body>
