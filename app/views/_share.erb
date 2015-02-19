@@ -27,7 +27,7 @@
   <script>
     $(function() {
       $.getJSON("http://urls.api.twitter.com/1/urls/count.json?url=<%=CGI::escape(url)%>+&callback=?", function(data) {
-        $('#<%=id%> .twitter .count').append('<a style="color:black" target="_blank" href="http://twitter.com/search?q=<%=CGI::escape(url)%>">' + data['count'] + '</a>');
+        $('#<%=id%> .twitter .count').append('<a target="_blank" href="http://twitter.com/search?q=<%=CGI::escape(url)%>">' + data['count'] + '</a>');
       });
     });
   </script>

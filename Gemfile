@@ -28,6 +28,9 @@ gem 'omniauth-linkedin'
 # Error reporting
 gem 'airbrake'
 
-# Interacting with other web services
-gem 'mechanize'
+# Email
 gem 'mail'
+
+# Interacting with other websites
+gem 'mechanize'
+
