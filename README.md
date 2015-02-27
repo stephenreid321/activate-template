@@ -105,8 +105,7 @@ group :test do
   gem 'minitest-rg'
   gem 'launchy'
   gem 'factory_girl'
-  # resolution issues!
-  #  gem 'capybara'
-  #  gem 'poltergeist'
+  gem 'capybara'
+  gem 'poltergeist'
 end
 ```
