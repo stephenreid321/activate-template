@@ -4,10 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <% {            
+      'jquery/1.11.2' => 'jquery.min.js',
+      'webshim/1.15.7' => 'minified/polyfiller.js',
+      'bootswatch/3.3.2' => 'lumen/bootstrap.min.css',      
+      'twitter-bootstrap/3.3.2' => 'js/bootstrap.min.js',
+      'font-awesome/4.3.0' => 'css/font-awesome.min.css',
+      }.each { |k,v| %>    
+      <% v.split(' ').each { |f| u = "https://cdnjs.cloudflare.com/ajax/libs/#{k}/#{f}" %>
+        <% case f.split('.').last.to_sym; when :js %>
+          <script type="text/javascript" src="<%=u%>"></script>      
+        <% when :css %>
+          <link rel="stylesheet" href="<%=u%>" />
+        <% end %>
+      <% } %>
+    <% } %>
+
     <%
     [
-      'bootstrap.min.css',
-      'font-awesome.min.css',
       'share.css',
       'app.css'        
       ].each { |file| %> 
@@ -15,17 +29,10 @@
     <% } %>
 
     <% [
-      'jquery-1.11.2.min.js',
-      'bootstrap.min.js',
       'app.js',
       ].each { |file| %>
       <script src="/javascripts/<%=file%>"></script>
     <% } %>
-      
-    <script src="/webshim/polyfiller.js"></script> 
-    <script>
-      webshims.polyfill();
-    </script>      
 
     <%= favicon_tag 'favicon.png' %>
     <title><%=@title%></title>

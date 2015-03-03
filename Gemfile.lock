@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/wordsandwriting/activate-admin.git
-  revision: b242933ddaeabfa6e6c3ec1d09200e9f72bfd64e
+  revision: 24e0fd3baa102b51a822869ae234d6052158794b
   specs:
     activate-admin (0.0.1)
       activate-tools
@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: git://github.com/wordsandwriting/activate-tools.git
-  revision: 39c6f2d8ae5a912471f61d7a703c94f047883f55
+  revision: add9f0ecaf8bb668d810f7b967f0bdbdf1178d6a
   specs:
     activate-tools (0.0.1)
       padrino
@@ -40,7 +40,7 @@ GEM
     bcrypt (3.1.10)
     bson (2.3.0)
     builder (3.2.2)
-    connection_pool (2.1.1)
+    connection_pool (2.1.2)
     domain_name (0.5.23)
       unf (>= 0.0.5, < 1.0.0)
     dragonfly (1.0.7)
@@ -51,7 +51,7 @@ GEM
       dragonfly (~> 1.0)
       fog
     erubis (2.7.0)
-    excon (0.44.2)
+    excon (0.44.3)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     fission (0.5.0)
@@ -79,7 +79,7 @@ GEM
     fog-atmos (0.1.0)
       fog-core
       fog-xml
-    fog-aws (0.1.0)
+    fog-aws (0.1.1)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
@@ -147,7 +147,7 @@ GEM
     inflecto (0.0.2)
     ipaddress (0.8.0)
     json (1.8.2)
-    jwt (1.2.1)
+    jwt (1.3.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -294,7 +294,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-linkedin
   omniauth-twitter
-  padrino
+  padrino (= 0.12.4)
   puma
   rack (= 1.5.2)
   rack-timeout
