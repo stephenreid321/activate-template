@@ -13,26 +13,25 @@
       }.each { |k,v| %>    
       <% v.split(' ').each { |f| u = "https://cdnjs.cloudflare.com/ajax/libs/#{k}/#{f}" %>
         <% case f.split('.').last.to_sym; when :js %>
-          <script type="text/javascript" src="<%=u%>"></script>      
+          <script src="<%=u%>"></script>      
         <% when :css %>
           <link rel="stylesheet" href="<%=u%>" />
         <% end %>
       <% } %>
     <% } %>
 
-    <%
-    [
-      'share.css',
-      'app.css'        
-      ].each { |file| %> 
-      <link rel="stylesheet" href="/stylesheets/<%=file%>" />    
+    <% [
+      '/stylesheets/share.css',
+      '/stylesheets/app.css'
+      ].each { |f| %> 
+      <link rel="stylesheet" href="<%=f%>" />    
     <% } %>
 
     <% [
-      'app.js',
-      ].each { |file| %>
-      <script src="/javascripts/<%=file%>"></script>
-    <% } %>
+      '/javascripts/app.js'
+      ].each { |f| %>
+      <script src="<%=f%>"></script>
+    <% } %>  
 
     <%= favicon_tag 'favicon.png' %>
     <title><%=@title%></title>
