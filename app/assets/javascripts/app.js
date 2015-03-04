@@ -1,6 +1,7 @@
-$(function () {
 
-  webshims.polyfill();
+webshims.polyfill();
+
+$(function () {
 
   $(document).on('click', 'a[data-confirm]', function (e) {
     var message = $(this).data('confirm');
