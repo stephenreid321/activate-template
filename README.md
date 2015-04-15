@@ -59,6 +59,7 @@ end
 ```
 gem 'pg'
 gem 'activerecord', '>=4.0', require: 'active_record'
+gem 'activerecord_any_of', github: 'oelmekki/activerecord_any_of'
 ```
 
 boot.rb:
