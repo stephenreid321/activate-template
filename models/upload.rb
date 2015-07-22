@@ -11,6 +11,7 @@ class Upload
     
   def self.admin_fields
     {
+      :file_name => {:type => :text, :edit => false},      
       :file => :file
     }
   end
