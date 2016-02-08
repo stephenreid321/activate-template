@@ -11,8 +11,12 @@
 .share-buttons .count i { border-right-color: white; left: -3px; z-index: 1; }      
 .share-buttons .count, .share-buttons .count a { color: black }
 
-.share-big a { display:inline-block; text-decoration: none; color: white; border-radius: 5px; padding: 10px }
-.share-big .facebook { background: #4966B7;  box-shadow: 1px 1px 1px #4966B7; margin-right: 10px }
+.share-big a { display:block; text-decoration: none; color: white; border-radius: 5px; padding: 10px; margin-bottom: 10px }
+.share-big .facebook { background: #4966B7;  box-shadow: 1px 1px 1px #4966B7;  }
 .share-big .facebook:hover { background: #3E5BAA; box-shadow: 1px 1px 1px #3E5BAA; color: white; text-decoration: none; }
 .share-big .twitter {  background: #55ACEE; box-shadow: 1px 1px 1px #55ACEE }
 .share-big .twitter:hover { background: #3CAEFF; box-shadow: 1px 1px 1px #3CAEFF; color: white; text-decoration: none; }
+@media(min-width: 768px) {
+  .share-big a { display:inline-block; margin-bottom: 0 }
+  .share-big .facebook { margin-right: 10px }
+}
