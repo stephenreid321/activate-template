@@ -25,10 +25,10 @@ module ActivateApp
     
     Mail.defaults do
       delivery_method :smtp, {
-        :user_name => ENV['MANDRILL_USERNAME'],
-        :password => ENV['MANDRILL_APIKEY'],
-        :address => "smtp.mandrillapp.com",
-        :port => 587
+        :user_name => ENV['MAILGUN_SMTP_LOGIN'],
+        :password => ENV['MAILGUN_SMTP_PASSWORD'],
+        :address => ENV['MAILGUN_SMTP_SERVER'],
+        :port => ENV['MAILGUN_SMTP_PORT']
       }   
     end 
        
