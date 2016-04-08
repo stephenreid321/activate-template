@@ -15,7 +15,6 @@ class TestAccounts < ActiveSupport::TestCase
     fill_in 'Email', :with => @account.email
     select @account.time_zone, :from => 'Time zone'
     fill_in 'Password', :with => @account.password
-    fill_in 'Password again', :with => @account.password_confirmation
     click_button 'Create account'
     assert page.has_content? 'Your account was created successfully'
   end    

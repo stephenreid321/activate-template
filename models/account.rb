@@ -23,7 +23,7 @@ class Account
   has_many :provider_links, :dependent => :destroy
   accepts_nested_attributes_for :provider_links  
           
-  attr_accessor :password, :password_confirmation 
+  attr_accessor :password
 
   validates_presence_of :name, :time_zone    
   validates_presence_of     :email
@@ -31,9 +31,7 @@ class Account
   validates_uniqueness_of   :email,    :case_sensitive => false
   validates_format_of       :email,    :with => /\A[^@\s]+@[^@\s]+\.[^@\s]+\Z/i
   validates_presence_of     :password,                   :if => :password_required
-  validates_presence_of     :password_confirmation,      :if => :password_required
   validates_length_of       :password, :within => 4..40, :if => :password_required
-  validates_confirmation_of :password,                   :if => :password_required  
           
   def self.admin_fields
     {
@@ -43,7 +41,6 @@ class Account
       :admin => :check_box,
       :time_zone => :select,
       :password => {:type => :password, :new_hint => 'Leave blank to keep existing password'},
-      :password_confirmation => :password,
       :provider_links => :collection
     }
   end
@@ -51,13 +48,7 @@ class Account
   def firstname
     name.split(' ').first
   end
-    
-  def self.human_attribute_name(attr, options={})  
-    {
-      :password_confirmation => "Password again"
-    }[attr.to_sym] || super  
-  end    
-           
+               
   def self.time_zones
     ['']+ActiveSupport::TimeZone::MAPPING.keys.sort
   end  
@@ -88,7 +79,6 @@ class Account
   
   def reset_password!
     self.password = Account.generate_password(8)
-    self.password_confirmation = self.password    
     if self.save
       mail = Mail.new
       mail.to = self.email
