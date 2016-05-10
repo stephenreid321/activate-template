@@ -45,6 +45,12 @@ class Account
     }
   end
   
+ def self.edit_hints
+    {
+      :password => 'Leave blank to keep existing password'      
+    }
+  end     
+  
   def firstname
     name.split(' ').first
   end
