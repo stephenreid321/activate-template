@@ -1,5 +1,6 @@
 module ActivateApp
   class App < Padrino::Application
+    use Rack::Timeout
     register Padrino::Rendering
     register Padrino::Helpers
     register WillPaginate::Sinatra
