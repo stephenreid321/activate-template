@@ -17,11 +17,12 @@ $(function () {
 
   $("abbr.timeago").timeago()
 
-  $('textarea.wysiwyg').not('textarea.wysified').each(function () {
+  $('textarea.wysiwyg').each(function () {
     var textarea = this;
     var summernote = $('<div class="summernote"></div>');
     $(summernote).insertAfter(this);
     $(summernote).summernote({
+      styleWithSpan: false,
       toolbar: [
         ['view', ['codeview', 'fullscreen']],
         ['style', ['style']],
@@ -30,17 +31,14 @@ $(function () {
         ['para', ['ul', 'ol', 'paragraph']],
         ['height', ['height']],
         ['table', ['table']],
-        ['insert', ['picture', 'link', 'video']],
+        ['insert', ['link', 'picture', 'video']],
       ],
-      height: 200,
-      codemirror: {
-        theme: 'monokai'
-      }
+      height: 300,
+      codemirror: {theme: 'monokai'},
     });
-    $('.note-image-input').parent().hide();
     $(textarea).prop('required', false);
     $(summernote).code($(textarea).val());
-    $(textarea).addClass('wysified').hide();
+    $(textarea).hide();
     $(textarea.form).submit(function () {
       $(textarea).val($(summernote).code());
     });
