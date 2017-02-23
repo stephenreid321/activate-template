@@ -12,4 +12,4 @@ input[name$='[month]'] { width: 8em }
 select[name$='[hour]'], select[name$='[min]'] { width: 6em }
 input[name$='[lat]'], input[name$='[lng]'] { display:inline; width: auto } 
 
-
+.btn { text-transform: none }
