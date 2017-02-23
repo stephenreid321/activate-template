@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: git://github.com/wordsandwriting/activate-tools.git
-  revision: 3713917a4b83fe386610f8ba224e0a90b499e7e0
+  revision: ffabe789bc796852f7213c66e9dc0467a9538cff
   specs:
     activate-tools (0.0.1)
       padrino
@@ -45,7 +45,7 @@ GEM
       delayed_job (>= 3.0, < 5)
       mongoid (>= 3.0, < 7)
       mongoid-compatibility (>= 0.4.0)
-    domain_name (0.5.20161129)
+    domain_name (0.5.20170223)
       unf (>= 0.0.5, < 1.0.0)
     dragonfly (1.1.1)
       addressable (~> 2.3)
@@ -75,10 +75,10 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
-    hashie (3.5.3)
+    hashie (3.5.4)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (0.8.0)
+    i18n (0.8.1)
     ipaddress (0.8.3)
     jwt (1.5.6)
     mail (2.6.4)
@@ -120,8 +120,8 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    omniauth (1.5.0)
-      hashie (~> 3.5.0, < 4)
+    omniauth (1.6.1)
+      hashie (>= 3.4.6, < 3.6.0)
       rack (>= 1.6.2, < 3)
     omniauth-facebook (4.0.0)
       omniauth-oauth2 (~> 1.2)
@@ -169,18 +169,17 @@ GEM
     padrino-support (0.13.3.3)
       activesupport (>= 3.1)
     public_suffix (2.0.5)
-    puma (3.7.0)
+    puma (3.7.1)
     rack (1.6.5)
     rack-protection (1.5.3)
       rack
-    rack-timeout (0.4.2)
     rake (12.0.0)
     sinatra (1.4.8)
       rack (~> 1.5)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
     thor (0.19.4)
-    thread_safe (0.3.5)
+    thread_safe (0.3.6)
     tilt (2.0.6)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -210,7 +209,6 @@ DEPENDENCIES
   padrino
   puma
   rack
-  rack-timeout
   rake
   will_paginate!
 

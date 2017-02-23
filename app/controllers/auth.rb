@@ -23,7 +23,7 @@ ActivateApp::App.controller do
           current_account.picture_url = @provider.image.call(env['omniauth.auth']) unless current_account.picture
           current_account.save
         end
-        redirect url(:accounts, :edit)
+        redirect '/accounts/edit'
       else # not signed in
         if account # sign in
           session['account_id'] = account.id
@@ -31,7 +31,7 @@ ActivateApp::App.controller do
           if session[:return_to]
             redirect session[:return_to]
           else
-            redirect url(:home)
+            redirect '/'
           end
         else
           flash.now[:notice] = "<i class=\"fa fa-#{@provider.icon}\"></i> We need a few more details to finish creating your account&hellip;"

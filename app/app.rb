@@ -1,6 +1,5 @@
 module ActivateApp
   class App < Padrino::Application
-    use Rack::Timeout
     register Padrino::Rendering
     register Padrino::Helpers
     register WillPaginate::Sinatra
@@ -52,7 +51,7 @@ module ActivateApp
       erb :not_found, :layout => :application
     end
     
-    get :home, :map => '/' do
+    get '/' do
       erb :home
     end
     

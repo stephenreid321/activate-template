@@ -19,7 +19,7 @@
     </div>
   <% end %>
 
-  <% form_tag url(:accounts, :forgot_password), :id => 'forgot', :class => 'form-inline', :style => 'display: none' do %>
+  <% form_tag '/accounts/forgot_password', :id => 'forgot', :class => 'form-inline', :style => 'display: none' do %>
     <div class="form-group" style="display:block; margin-bottom: 0.5em">
       <label class="sr-only">Email</label>   
       <%= text_field_tag :email, :class => 'form-control', :placeholder => 'Email', :style => 'display: inline-block; max-width: 20em;' %>

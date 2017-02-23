@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <% {            
-      'jquery/1.11.2' => 'jquery.min.js',
+      'jquery/3.1.1' => 'jquery.min.js',
       'bootswatch/3.3.2' => 'lumen/bootstrap.min.css',      
       'twitter-bootstrap/3.3.2' => 'js/bootstrap.min.js',
-      'font-awesome/4.3.0' => 'css/font-awesome.min.css',
+      'font-awesome/4.5.0' => 'css/font-awesome.min.css',
+      'select2/3.5.2' => 'select2.min.js select2.min.css',
+      'codemirror/5.0.0' => 'codemirror.min.css theme/monokai.min.css codemirror.min.js mode/xml/xml.min.js',
+      'summernote/0.6.1' => 'summernote.min.css summernote.min.js',
+      'jquery-timeago/1.4.3' => 'jquery.timeago.min.js',      
       }.each { |k,v| %>    
       <% v.split(' ').each { |f| u = "https://cdnjs.cloudflare.com/ajax/libs/#{k}/#{f}" %>
         <% case f.split('.').last.to_sym; when :js %>
@@ -28,6 +32,7 @@
 
     <% [
       "//maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
+      '//cdn.rawgit.com/wordsandwriting/activate-tools/f39002fcc10a9a554c651543b3065847130c2811/js/jquery.geopicker.js',      
       '/javascripts/app.js'
       ].each { |f| %>
       <script src="<%=f%>"></script>

@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<%=url(:home)%>">ActivateTemplate</a>
+      <a class="navbar-brand" href="<%='/'%>">ActivateTemplate</a>
     </div>
     <div class="collapse navbar-collapse navbar-top-collapse"> 
 
@@ -18,16 +18,16 @@
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;"><%=current_account.name%> <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="<%=url(:accounts, :edit)%>">Edit profile</a></li>
-              <li><a href="<%=url(:accounts, :sign_out)%>">Sign out</a></li>
+              <li><a href="/accounts/edit">Edit profile</a></li>
+              <li><a href="/accounts/sign_out">Sign out</a></li>
             </ul>
           </li>               
         <% else %>                            
           <li>
-            <a href="<%=url(:accounts, :sign_up)%>">Sign up</a>
+            <a href="/accounts/sign_up">Sign up</a>
           </li>
           <li>
-            <a href="<%=url(:accounts, :sign_in)%>">Sign in</a>
+            <a href="/accounts/sign_in">Sign in</a>
           </li>                
         <% end %>
       </ul>
