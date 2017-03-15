@@ -25,7 +25,7 @@
 
     <% [
       '/stylesheets/share.css',
-      '/stylesheets/app.css'
+      "/stylesheets/app.css?#{Time.now.to_i}"
       ].each { |f| %> 
       <link rel="stylesheet" href="<%=f%>" />    
     <% } %>
@@ -33,7 +33,7 @@
     <% [
       "//maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
       '//cdn.rawgit.com/wordsandwriting/activate-tools/f39002fcc10a9a554c651543b3065847130c2811/js/jquery.geopicker.js',      
-      '/javascripts/app.js'
+      "/javascripts/app.js?#{Time.now.to_i}"
       ].each { |f| %>
       <script src="<%=f%>"></script>
     <% } %>  
