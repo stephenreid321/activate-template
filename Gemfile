@@ -17,6 +17,7 @@ gem 'mongoid'
 gem 'delayed_job_mongoid'
 gem 'dragonfly'
 gem 'dragonfly-s3_data_store'
+gem 'activemodel', '~>4.2'
 
 # Authentication
 gem 'bcrypt'

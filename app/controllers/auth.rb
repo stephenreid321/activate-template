@@ -14,16 +14,23 @@ ActivateApp::App.controller do
         @provider = Provider.object(env['omniauth.auth']['provider'])
         ProviderLink.find_by(provider: @provider.display_name, provider_uid: env['omniauth.auth']['uid']).try(:account)
       end
-      if current_account # already signed in; attempt to connect            
-        if account # someone's already connected
-          flash[:error] = "Someone's already connected to that account!"
-        else # connect; Account never reaches here
-          flash[:notice] = "<i class=\"fa fa-#{@provider.icon}\"></i> Connected!"
-          current_account.provider_links.build(provider: @provider.display_name, provider_uid: env['omniauth.auth']['uid'], omniauth_hash: env['omniauth.auth'])
-          current_account.picture_url = @provider.image.call(env['omniauth.auth']) unless current_account.picture
-          current_account.save
+      if current_account # already signed in            
+        if @provider # attempt to connect
+          if account # someone's already connected
+            flash[:error] = "Someone's already connected to that account!"
+          else # connect; Account never reaches here
+            current_account.provider_links.build(provider: @provider.display_name, provider_uid: env['omniauth.auth']['uid'], omniauth_hash: env['omniauth.auth'])
+            current_account.picture_url = @provider.image.call(env['omniauth.auth']) unless current_account.picture
+            if current_account.save
+              flash[:notice] = "<i class=\"fa fa-#{@provider.icon}\"></i> Connected!"
+            else
+              flash[:error] = "There was an error connecting the account"
+            end
+          end
+          redirect '/accounts/edit'
+        else          
+          redirect '/'
         end
-        redirect '/accounts/edit'
       else # not signed in
         if account # sign in
           session['account_id'] = account.id
