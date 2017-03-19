@@ -8,7 +8,7 @@ module ActivateApp
     helpers Activate::NavigationHelpers
             
     use Dragonfly::Middleware       
-    use Airbrake::Rack    
+    use Airbrake::Rack::Middleware
     use OmniAuth::Builder do
       provider :account
       Provider.registered.each { |provider|
@@ -40,7 +40,7 @@ module ActivateApp
     end        
                 
     error do
-      Airbrake.notify(env['sinatra.error'], :session => session)
+      Airbrake.notify(env['sinatra.error'], :session => session) if ENV['AIRBRAKE_HOST']
       erb :error, :layout => :application
     end        
     
