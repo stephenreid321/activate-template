@@ -4,4 +4,10 @@ if ENV['AIRBRAKE_HOST']
     config.project_key = (ENV['AIRBRAKE_PROJECT_KEY'] or ENV['AIRBRAKE_API_KEY'])
     config.host = ENV['AIRBRAKE_HOST']
   end
+  
+  Airbrake.add_filter do |notice|
+    if notice[:errors].any? { |error| error[:type] == 'Sinatra::NotFound' }
+      notice.ignore!
+    end
+  end  
 end
