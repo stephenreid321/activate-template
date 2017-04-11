@@ -33,7 +33,7 @@ module ActivateApp
     end 
        
     before do
-      redirect "http://#{ENV['DOMAIN']}#{request.path}" if ENV['DOMAIN'] and request.env['HTTP_HOST'] != ENV['DOMAIN']
+      redirect "http://#{ENV['DOMAIN']}#{request.path}" if ENV['DOMAIN'] and request.env['HTTP_HOST'].split(':').first != ENV['DOMAIN']
       Time.zone = current_account.time_zone if current_account and current_account.time_zone    
       fix_params!
       @_params = params; def params; @_params; end # force controllers to inherit the fixed params

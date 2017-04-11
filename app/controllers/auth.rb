@@ -33,7 +33,7 @@ ActivateApp::App.controller do
         end
       else # not signed in
         if account # sign in
-          session['account_id'] = account.id
+          session['account_id'] = account.id.to_s
           flash[:notice] = "Signed in!"
           if session[:return_to]
             redirect session[:return_to]
