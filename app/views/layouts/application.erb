@@ -32,7 +32,8 @@
     <% [
       "//maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_MAPS_API_KEY']}",
       '//cdn.rawgit.com/wordsandwriting/activate-tools/f39002fcc10a9a554c651543b3065847130c2811/js/jquery.geopicker.js',      
-      "/javascripts/app.js?#{Time.now.to_i}"
+      "/javascripts/app.js?#{Time.now.to_i}",
+      '//cdn.rawgit.com/wordsandwriting/activate-tools/6681c1667d3fb4e28b2e31f2771a7c6d68392c97/js/pagelets.js'      
       ].each { |f| %>
       <script src="<%=f%>"></script>
     <% } %>  
