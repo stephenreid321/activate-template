@@ -1,11 +1,11 @@
 ActivateApp::App.controller do
   
-  get '/accounts/sign_up' do
+  get '/sign_up' do
     redirect '/accounts/new' if Provider.registered.empty?
     erb :'accounts/sign_up'
   end    
   
-  get '/accounts/sign_in' do
+  get '/sign_in' do
     erb :'accounts/sign_in'
   end    
     

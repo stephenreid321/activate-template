@@ -9,7 +9,7 @@ class TestAccounts < ActiveSupport::TestCase
   
   test 'signing up' do
     @account = FactoryGirl.build(:account)
-    visit '/accounts/sign_up'
+    visit '/sign_up'
     click_link 'Sign up with an email address' if !Provider.registered.empty?
     fill_in 'Name', :with => @account.name
     fill_in 'Email', :with => @account.email

@@ -3,7 +3,7 @@ module OmniAuth
     class Account
       include OmniAuth::Strategy
       
-      option :sign_in, '/accounts/sign_in'
+      option :sign_in, '/sign_in'
       
       def request_phase
         redirect options.sign_in

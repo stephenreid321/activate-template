@@ -17,9 +17,9 @@
                 $('#forgot').show();
                 $('#forgot input').focus();">Forgot your password?</a>
     </div>
-    <div class="alert alert-info">
-      No account? <a href="/accounts/sign_up">Sign up</a>
-    </div>    
+    <a href="/sign_up" class="btn btn-primary">
+      Not yet registered? Sign up here
+    </a> 
   <% end %>
 
   <% form_tag '/accounts/forgot_password', :id => 'forgot', :class => 'form-inline', :style => 'display: none' do %>
