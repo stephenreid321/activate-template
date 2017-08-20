@@ -1,5 +1,8 @@
 
 $(function () {
+  
+  $(".datepicker").flatpickr();
+  $(".datetimepicker").flatpickr({enableTime: true, time_24hr: true});
 
   $('input[type=text].slug').each(function () {
     var slug = $(this);
