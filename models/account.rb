@@ -10,6 +10,10 @@ class Account
   field :crypted_password, :type => String
   field :picture_uid, :type => String
   
+  def self.protected_attributes
+    %w{admin}
+  end  
+  
   # Dragonfly
   dragonfly_accessor :picture
   before_validation do

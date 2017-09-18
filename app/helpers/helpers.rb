@@ -1,5 +1,13 @@
 ActivateApp::App.helpers do
   
+  def mass_assigning(params, model)
+    intersection = model.protected_attributes & params.keys
+    if !intersection.empty?
+      raise "attributes #{intersection} are protected"
+    end
+    params
+  end  
+  
   def current_account
     @current_account ||= Account.find(session[:account_id]) if session[:account_id]
   end
