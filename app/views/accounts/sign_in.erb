@@ -1,33 +1,40 @@
+<div class="col-sm-8 mx-auto">
+  <% form_tag '/auth/account/callback' do %>
 
-<div style="text-align: center">
+    <div class="form-group">
+      <label>Email</label>
+      <%= text_field_tag :email, :value => params[:email], :class => 'form-control' %>
+    </div>
 
-  <% form_tag '/auth/account/callback', :id => 'sign_in' do %>
-    <div class="form-group" style="display:block; margin-bottom: 0.5em">
-      <label class="sr-only">Email</label>
-      <%= text_field_tag :email, :id => 'email', :class => 'form-control', :placeholder => 'Email', :style => 'display: inline-block; max-width: 20em; ' %>
-    </div>        
-    <div class="form-group" style="display:block; margin-bottom: 0.5em">
-      <label class="sr-only">Password</label>
-      <%= password_field_tag :password, :id => 'password', :class => 'form-control', :placeholder => 'Password', :style => 'display: inline-block; max-width: 20em; ' %>
+    <div class="form-group">
+      <label>Password</label>
+      <%= password_field_tag :password, :value => params[:password], :class => 'form-control' %>
     </div>
-    <button class="btn btn-primary" type="submit">Sign in</button>  
-    <div style="margin: 10px" >
-      <a href="javascript:;" onclick="$(this).hide();
-                $('#sign_in').hide();
-                $('#forgot').show();
-                $('#forgot input').focus();">Forgot your password?</a>
+
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">Sign in</button>
+      <% if Account.method_defined?(:reset_password!) %>
+        &middot; <a href="javascript:;" onclick="$('form[action$=callback]').hide();
+            $('form[action$=forgot_password]').show();
+            $('form[action$=forgot_password] input').focus();">Forgot your password?</a>
+                  <% end %>
     </div>
+
     <a href="/sign_up" class="btn btn-primary">
       Not yet registered? Sign up here
-    </a> 
+    </a>   
+  
   <% end %>
 
-  <% form_tag '/accounts/forgot_password', :id => 'forgot', :class => 'form-inline', :style => 'display: none' do %>
-    <div class="form-group" style="display:block; margin-bottom: 0.5em">
-      <label class="sr-only">Email</label>   
-      <%= text_field_tag :email, :class => 'form-control', :placeholder => 'Email', :style => 'display: inline-block; max-width: 20em;' %>
+  <% form_tag '/accounts/forgot_password', :style => 'display: none' do %>
+
+    <div class="form-group">
+      <label>Email</label>
+      <%= text_field_tag :email, :value => params[:email], :class => 'form-control' %>
     </div>
+
     <button class="btn btn-primary" type="submit">Reset password</button>
+
   <% end %>
 
   <% if !Provider.registered.empty? %>

@@ -1,17 +1,2 @@
 
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,700,700i,900,900i');
-p, ul, ol, input, select, .form-control, body { font-family: 'Raleway', 'Helvetica Neue',Helvetica,Arial,sans-serif }
-h1, h2, h3, h4, h5, h6, .h { font-family: 'Raleway'; text-transform: uppercase; font-weight: 900 }
-
-body { padding-top: 60px }
-#alert-wrap { margin-top: -40px; position: absolute; z-index: 1040; width: 40%; margin-left: -20%; left: 50%; }
-
-img { image-orientation: from-image; }
-
-input[name$='[day]'], input[name$='[month]'], input[name$='[year]'], select[name$='[hour]'], select[name$='[min]'] { display:inline; } 
-input[name$='[day]'], input[name$='[year]'] { width: 4em }
-input[name$='[month]'] { width: 8em }
-select[name$='[hour]'], select[name$='[min]'] { width: 6em }
-input[name$='[lat]'], input[name$='[lng]'] { display:inline; width: auto } 
-
-.btn { text-transform: none }
+body { padding-top: 4.5rem; padding-bottom: 2rem }
