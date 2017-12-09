@@ -6,6 +6,11 @@ module ActivateApp
     helpers Activate::DatetimeHelpers
     helpers Activate::ParamHelpers
     helpers Activate::NavigationHelpers
+    
+    require 'sass/plugin/rack'
+    Sass::Plugin.options[:template_location] = Padrino.root('app', 'assets', 'stylesheets')
+    Sass::Plugin.options[:css_location] = Padrino.root('app', 'assets', 'stylesheets')
+    use Sass::Plugin::Rack      
             
     use Dragonfly::Middleware       
     use Airbrake::Rack::Middleware

@@ -5,6 +5,7 @@ gem 'sinatra'
 gem 'padrino'
 gem 'puma'
 gem 'rake'
+gem 'sass'
 
 # Admin
 gem 'will_paginate', github: 'mislav/will_paginate'
