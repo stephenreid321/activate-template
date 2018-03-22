@@ -21,30 +21,23 @@ $(function () {
   $("abbr.timeago").timeago()
 
   $('textarea.wysiwyg').each(function () {
-    var textarea = this;
-    var summernote = $('<div class="summernote"></div>');
-    $(summernote).insertAfter(this);
-    $(summernote).summernote({
-      styleWithSpan: false,
-      toolbar: [
-        ['view', ['codeview', 'fullscreen']],
-        ['style', ['style']],
-        ['font', ['bold', 'italic', 'underline', 'clear']],
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['height', ['height']],
-        ['table', ['table']],
-        ['insert', ['link', 'picture', 'video']],
-      ],
-      height: 300,
-      codemirror: {theme: 'monokai'},
+    var textarea = this
+    var editor = textboxio.replace(textarea, {
+      css: {
+        stylesheets: ['/stylesheets/app.css']
+      },
+      paste: {
+        style: 'plain'
+      },
+      images: {
+        allowLocal: false
+      }
     });
-    $(textarea).prop('required', false);
-    $(summernote).code($(textarea).val());
-    $(textarea).hide();
-    $(textarea.form).submit(function () {
-      $(textarea).val($(summernote).code());
-    });
+    if (textarea.form)
+      $(textarea.form).submit(function () {
+        if ($(editor.content.get()).text().trim() == '')
+          editor.content.set(' ')
+      })
   });
 
   $(document).on('click', 'a[data-confirm]', function (e) {
