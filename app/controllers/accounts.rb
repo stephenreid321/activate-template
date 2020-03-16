@@ -32,8 +32,7 @@ ActivateApp::App.controller do
     erb :'accounts/build'
   end 
   
-  post '/accounts/new' do
-    raise params[:account].inspect
+  post '/accounts/new' do   
     @account = Account.new(mass_assigning(params[:account], Account))
     if session['omniauth.auth']
       @provider = Provider.object(session['omniauth.auth']['provider'])
