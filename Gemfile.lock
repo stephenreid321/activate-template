@@ -1,23 +1,23 @@
 GIT
-  remote: git://github.com/mislav/will_paginate.git
-  revision: 0b93300d43f658bb15071f59486c92af06aca064
+  remote: https://github.com/mislav/will_paginate.git
+  revision: c732deeba65e709e6c5d223584e2fc4448a12334
   specs:
-    will_paginate (3.1.6)
+    will_paginate (3.3.1)
 
 GIT
-  remote: git://github.com/wordsandwriting/activate-admin.git
-  revision: b43e6caaf7a9ffb80bdbe2a7a51c9d7fafbb421f
+  remote: https://github.com/wordsandwriting/activate-admin.git
+  revision: ef109899438aeacbd8bcb3f0c82f7e24e99588b1
   specs:
-    activate-admin (0.0.1)
+    activate-admin (0.0.11)
       activate-tools
       padrino
       will_paginate
 
 GIT
-  remote: git://github.com/wordsandwriting/activate-tools.git
-  revision: 7bef07297b78b0f68e40ae465d68be68ea49e27b
+  remote: https://github.com/wordsandwriting/activate-tools.git
+  revision: 22965b0b1cc2f1dd8cdb46c1efd4c459601a99f8
   specs:
-    activate-tools (0.0.1)
+    activate-tools (0.0.17)
       padrino
 
 GEM
@@ -114,6 +114,7 @@ GEM
     net-http-digest_auth (1.4.1)
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
+    nio4r (2.5.8)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     ntlm-http (0.1.1)
@@ -167,7 +168,8 @@ GEM
       padrino-core (= 0.14.3)
     padrino-support (0.14.3)
     public_suffix (3.0.2)
-    puma (3.11.4)
+    puma (4.3.12)
+      nio4r (~> 2.0)
     rack (2.0.5)
     rack-protection (2.0.0)
       rack
