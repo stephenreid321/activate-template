@@ -1,23 +1,23 @@
 GIT
-  remote: git://github.com/mislav/will_paginate.git
-  revision: 0b93300d43f658bb15071f59486c92af06aca064
+  remote: https://github.com/mislav/will_paginate.git
+  revision: c732deeba65e709e6c5d223584e2fc4448a12334
   specs:
-    will_paginate (3.1.6)
+    will_paginate (3.3.1)
 
 GIT
-  remote: git://github.com/wordsandwriting/activate-admin.git
-  revision: b43e6caaf7a9ffb80bdbe2a7a51c9d7fafbb421f
+  remote: https://github.com/wordsandwriting/activate-admin.git
+  revision: ef109899438aeacbd8bcb3f0c82f7e24e99588b1
   specs:
-    activate-admin (0.0.1)
+    activate-admin (0.0.11)
       activate-tools
       padrino
       will_paginate
 
 GIT
-  remote: git://github.com/wordsandwriting/activate-tools.git
-  revision: 7bef07297b78b0f68e40ae465d68be68ea49e27b
+  remote: https://github.com/wordsandwriting/activate-tools.git
+  revision: c94aaca8b38db33a24eb0d234b128b9985be902b
   specs:
-    activate-tools (0.0.1)
+    activate-tools (0.0.18)
       padrino
 
 GEM
@@ -188,7 +188,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tzinfo (1.2.5)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
