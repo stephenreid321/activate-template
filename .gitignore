@@ -7,10 +7,17 @@ vendor/gems/*
 .sass-cache/*
 nbproject
 .env
-.envtest
+.env.test
 dragonfly.log
 app/assets/stylesheets/app.css
 app/assets/stylesheets/app.css.map
+capybara
+node_modules
+*.js.map
+app/assets/javascripts/ckeditor5/build/translations
+.on-save.json
+*.code-workspace
+dump
 
 *.gem
 *.rbc
@@ -30,3 +37,5 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+.idea/
